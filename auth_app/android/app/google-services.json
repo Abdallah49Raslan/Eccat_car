@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "4727165349",
+    "project_id": "auth-app-bd0ff",
+    "storage_bucket": "auth-app-bd0ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4727165349:android:319f18d7552b8728be184c",
+        "android_client_info": {
+          "package_name": "com.example.auth_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4727165349-fkqs3te5qbdtkfk59fmhg9520dh7veip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcwQfZX5aqO6gBJ_1bTT3UhkIH0GO9r5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4727165349-fkqs3te5qbdtkfk59fmhg9520dh7veip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
