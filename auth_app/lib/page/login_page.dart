@@ -43,6 +43,15 @@ class _LoginPageState extends State<LoginPage> {
             key:formKey,
             child: Column(
               children: [
+                // logo button
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const StartPage()));
+                  },
+                  child: IconButton(
+                    icon: Image.asset('assets/image/logo.png', width: 50, height: 50), onPressed: () {  },
+                  ),
+                ),
                 //head of page
                 const SpaceVH(height: 50.0),
                 const Text(
