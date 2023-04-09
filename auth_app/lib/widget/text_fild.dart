@@ -54,7 +54,7 @@ Widget textField({
         if (image != null)
           SvgPicture.asset(
             'assets/icon/$image',
-            height: 22,
+            height: 24,
             color: grayText,
           ),
       ],
