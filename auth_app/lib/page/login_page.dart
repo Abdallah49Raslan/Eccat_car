@@ -1,3 +1,4 @@
+import 'package:auth_app/controler/ForgetPass.dart';
 import 'package:auth_app/page/sign_up.dart';
 import 'package:auth_app/page/start_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -93,7 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20.0),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () { Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (builder) => ForgetPasswordPage()));},
                       child: const Text(
                         'Forgot Password?',
                         style: headline3,
