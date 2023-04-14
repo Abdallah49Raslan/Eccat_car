@@ -1,3 +1,4 @@
+import 'package:security/page/Customer/start_page3.dart';
 import 'package:security/page/spalsh_Page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: themeData(),
-      home: HomePage(),
+      home: StartPage3(),
       
     );
   }

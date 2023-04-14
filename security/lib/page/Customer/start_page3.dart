@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../login_page.dart';
+import '../Customer/location.dart';
 
 class StartPage3 extends StatelessWidget {
   const StartPage3({Key? key}) : super(key: key);
@@ -25,10 +25,21 @@ class StartPage3 extends StatelessWidget {
                 final userData = snapshot.data!.data() as Map<String, dynamic>?;
                 final userName = userData?['name'] as String?;
                 return Text(
-                  'Welcome ${userName ?? 'Customer'}!',
+                  'Welcome ${userName ?? 'Owner'}!',
                   style: const TextStyle(fontSize: 24),
                 );
               },
+            ),
+            const SizedBox(height: 16),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LocationPage()),
+                );
+              },
+              icon: Icon(Icons.location_on),
+              tooltip: 'Go to Location Page',
             ),
             const SizedBox(height: 16),
             ElevatedButton(
