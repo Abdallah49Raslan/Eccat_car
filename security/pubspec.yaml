@@ -45,7 +45,6 @@ dependencies:
   firebase_database: ^10.1.0
 =======
   geolocator: ^9.0.2
-  firebase_database: ^10.1.0
   google_maps_flutter: ^2.2.5
 
 >>>>>>> 324ba968806e5dac7cde39d471f03174dc94c90c
