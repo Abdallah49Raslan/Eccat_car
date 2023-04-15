@@ -34,9 +34,7 @@ class SignUpLogic extends StatelessWidget {
           );
         } else if (snapshot.hasData && snapshot.data!) {
           // Check the user role and navigate to the appropriate start page
-          if (role == 'Owner') {
-            return StartPage();
-          } else if (role == 'Driver') {
+          if (role == 'Driver') {
             return StartPage2();
           } else if (role == 'Customer') {
             return StartPage3();

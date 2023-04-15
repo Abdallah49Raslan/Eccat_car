@@ -41,7 +41,14 @@ dependencies:
   firebase_auth: ^4.4.0
   google_sign_in: ^6.0.2
   cloud_firestore: ^4.5.0
+<<<<<<< HEAD
   firebase_database: ^10.1.0
+=======
+  geolocator: ^9.0.2
+  firebase_database: ^10.1.0
+  google_maps_flutter: ^2.2.5
+
+>>>>>>> 324ba968806e5dac7cde39d471f03174dc94c90c
 
 
 dev_dependencies:
