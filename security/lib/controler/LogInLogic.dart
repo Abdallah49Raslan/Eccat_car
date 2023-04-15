@@ -1,12 +1,11 @@
 import 'package:security/page/login_page.dart';
-import 'package:security/page/Owner/start_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../page/Driver/start_page2.dart';
-import '../page/Customer/start_page3.dart';
+import '../page/Customer/Custom_start.dart';
+import '../page/Driver/Driver_start.dart';
+import '../page/Owner/Owner_start.dart';
 
 class LoginLogic extends StatelessWidget {
 
@@ -80,17 +79,17 @@ class LoginLogic extends StatelessWidget {
           if (user == 'Owner') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => StartPage()),
+              MaterialPageRoute(builder: (context) => OwnerStartPage()),
             );
           } else if (user == 'Driver') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => StartPage2()),
+              MaterialPageRoute(builder: (context) => DriverStartPage()),
             );
           } else if (user == 'Customer') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => StartPage3()),
+              MaterialPageRoute(builder: (context) => CustomerStartPage()),
             );
           } else {
             // If role is not recognized, show an error message and return false

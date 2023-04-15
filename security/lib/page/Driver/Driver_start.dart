@@ -6,8 +6,8 @@ import '../../Iot/mainpage.dart';
 import '../Health Care/darkmode.dart';
 import '../login_page.dart';
 
-class StartPage2 extends StatelessWidget {
-  const StartPage2({Key? key}) : super(key: key);
+class DriverStartPage extends StatelessWidget {
+  const DriverStartPage({Key? key}) : super(key: key);
 
   void _showHealthCare(BuildContext context) {
     // Callback function to navigate to Health Care page

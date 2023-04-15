@@ -1,9 +1,8 @@
-import 'package:security/page/Owner/start_page.dart';
-import 'package:security/page/Driver/start_page2.dart';
-import 'package:security/page/Customer/start_page3.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../page/Customer/Custom_start.dart';
+import '../page/Driver/Driver_start.dart';
 import '../page/sign_up.dart';
 
 class SignUpLogic extends StatelessWidget {
@@ -35,9 +34,9 @@ class SignUpLogic extends StatelessWidget {
         } else if (snapshot.hasData && snapshot.data!) {
           // Check the user role and navigate to the appropriate start page
           if (role == 'Driver') {
-            return StartPage2();
+            return DriverStartPage();
           } else if (role == 'Customer') {
-            return StartPage3();
+            return CustomerStartPage();
           }
         } else if (snapshot.hasError) {
           // Handle any errors that may occur during sign-up

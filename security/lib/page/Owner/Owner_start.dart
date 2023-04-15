@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../login_page.dart';
 
-class StartPage extends StatelessWidget {
-  const StartPage({Key? key}) : super(key: key);
+class OwnerStartPage extends StatelessWidget {
+  const OwnerStartPage
+({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

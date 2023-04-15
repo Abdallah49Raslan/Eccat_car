@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../login_page.dart';
 import '../Customer/location.dart';
 
-class StartPage3 extends StatelessWidget {
-  const StartPage3({Key? key}) : super(key: key);
+class CustomerStartPage extends StatelessWidget {
+  const CustomerStartPage
+({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

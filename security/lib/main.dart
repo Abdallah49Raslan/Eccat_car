@@ -1,7 +1,5 @@
-import 'package:security/page/Driver/start_page2.dart';
+import 'package:security/page/Driver/Driver_start.dart';
 import 'package:security/page/Health%20Care/darkmode.dart';
-import 'package:security/page/Owner/start_page.dart';
-import 'package:security/page/Customer/start_page3.dart';
 import 'package:security/page/spalsh_Page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: themeData(),
-      home: StartPage2(),
+      home: DriverStartPage(),
     );
   }
 }
