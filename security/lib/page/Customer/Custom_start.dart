@@ -13,14 +13,14 @@ class CustomerStartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     FirebaseService _service = FirebaseService();
-    LocationService _locationService = LocationService();
+    //LocationService _locationService = LocationService();
 
     double _latitude = 0;
     double _longitude = 0;
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: () {
-        _locationService.sendLocationToDatabase(context);
+       // _locationService.sendLocationToDatabase(context);
       }),
       body: Center(
         child: Column(
