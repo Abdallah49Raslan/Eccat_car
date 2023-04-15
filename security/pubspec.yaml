@@ -44,6 +44,13 @@ dependencies:
   firebase_database: ^10.1.0
   geolocator: ^9.0.2
   google_maps_flutter: ^2.2.5
+  percent_indicator: ^4.2.3
+  syncfusion_flutter_gauges: ^20.4.54
+  firebase_messaging: ^14.3.0
+  awesome_dialog: ^3.0.2
+  http: ^0.13.5
+  firebase_storage: ^11.1.0
+  image_picker: ^0.8.7+1
 
 
 
