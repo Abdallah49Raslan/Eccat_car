@@ -44,7 +44,13 @@ class StartPage2 extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
               },
-              child: const Text('Log out'),
+              child: const Text(
+                'Log out',
+                style: TextStyle(fontSize: 18),
+              ),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+              ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
@@ -54,7 +60,13 @@ class StartPage2 extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const darkmode()),
                 );
               },
-              child: const Text('Health Care'),
+              child: const Text(
+                'Health Care',
+                style: TextStyle(fontSize: 18),
+              ),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+              ),
             ),
           ],
         ),

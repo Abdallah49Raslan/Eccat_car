@@ -129,12 +129,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 // user role
                 UserRoleDropdown(
                   hintTxt: 'Please select your role',
-                  options: ['Driver', 'Customer'],
+                  options: const ['Driver', 'Customer'],
                   selectedOption: selectedOption,
                   prefixIcon: const Icon(Icons.person_outline_rounded),
                   onChanged: (newValue) {
                     setState(() {
-                      selectedOption = newValue!;
+                      selectedOption = newValue;
                     });
                   },
                   validator: (value) {
