@@ -50,22 +50,23 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDTnts4da0M1t4G7HQLioKTN7s0H61O5CQ',
-    appId: '1:437756449159:android:80d3ee06c646ca90ea0322',
-    messagingSenderId: '437756449159',
-    projectId: 'security-d956d',
-    databaseURL: 'https://security-d956d-default-rtdb.firebaseio.com',
-    storageBucket: 'security-d956d.appspot.com',
+    apiKey: 'AIzaSyD6fo6Y_5-bG9PsTXRXrLbjyie364XjkwQ',
+    appId: '1:1091955552892:android:fc0f1f62a6d7131a334ff9',
+    messagingSenderId: '1091955552892',
+    projectId: 'health-care-176ad',
+    databaseURL: 'https://health-care-176ad-default-rtdb.firebaseio.com',
+    storageBucket: 'health-care-176ad.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCGcf-3HGs4ZSWWDgHMeyLerulbDwD1c6Q',
-    appId: '1:437756449159:ios:73d4a9f66226b068ea0322',
-    messagingSenderId: '437756449159',
-    projectId: 'security-d956d',
-    databaseURL: 'https://security-d956d-default-rtdb.firebaseio.com',
-    storageBucket: 'security-d956d.appspot.com',
-    iosClientId: '437756449159-ej6pf50s4stnr14lbb7lg82nses1mn3b.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAuX2LkDiX6tMI1btUneFNlMZSeJulmaKk',
+    appId: '1:1091955552892:ios:a8cdbef3f3df1164334ff9',
+    messagingSenderId: '1091955552892',
+    projectId: 'health-care-176ad',
+    databaseURL: 'https://health-care-176ad-default-rtdb.firebaseio.com',
+    storageBucket: 'health-care-176ad.appspot.com',
+    androidClientId: '1091955552892-0gea9s4vv61b6a8fqjlvp0d39f2a5o5a.apps.googleusercontent.com',
+    iosClientId: '1091955552892-cj8ieb1jeduhmenio4dckj6fuc457q00.apps.googleusercontent.com',
     iosBundleId: 'com.example.security',
   );
 }

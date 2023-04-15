@@ -41,6 +41,7 @@ dependencies:
   firebase_auth: ^4.4.0
   google_sign_in: ^6.0.2
   cloud_firestore: ^4.5.0
+  firebase_database: ^10.1.0
 
 
 dev_dependencies:
@@ -69,6 +70,11 @@ flutter:
   assets:
     - assets/image/
     - assets/icon/null
+    - assets\icons\heart-rate.svg
+    - assets\icons\temperature-high-solid-svgrepo-com.svg
+    - assets\icons\oxi3.png
+    - assets\icons\Car.png
+    - assets\icons\alcohol.png
 
   fonts:
       - family: SF Pro

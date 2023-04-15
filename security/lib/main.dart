@@ -1,8 +1,10 @@
+import 'package:security/page/Driver/start_page2.dart';
+import 'package:security/page/Health%20Care/darkmode.dart';
+import 'package:security/page/Owner/start_page.dart';
 import 'package:security/page/spalsh_Page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,8 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: themeData(),
-      home: HomePage(),
-      
+      home: StartPage2(),
     );
   }
 }

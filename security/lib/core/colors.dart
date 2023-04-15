@@ -22,3 +22,5 @@ const List<Color> gradient = [
   Color.fromRGBO(24, 26, 32, 0.4),
   Color.fromRGBO(24, 26, 32, 0.0),
 ];
+// const Color primaryColor = Color.fromARGB(255, 60, 177, 95);
+// const Color redColor = Color(0XFFFF5368);
