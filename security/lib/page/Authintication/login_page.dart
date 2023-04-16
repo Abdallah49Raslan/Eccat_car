@@ -1,15 +1,13 @@
-import 'package:security/page/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../controler/Forget_Pass.dart';
-import '../controler/LogInLogic.dart';
-import '../controler/SignUpLogic.dart';
-import '../controler/test.dart';
-import '../core/colors.dart';
-import '../core/space.dart';
-import '../core/text_style.dart';
-import '../widget/main_button.dart';
-import '../widget/text_fild.dart';
+import 'package:security/core/space.dart';
+import 'package:security/page/Authintication/Forget_Pass.dart';
+import 'package:security/page/Authintication/sign_up.dart';
+import '../../controler/LogInLogic.dart';
+import '../../core/colors.dart';
+import '../../core/text_style.dart';
+import '../../widget/main_button.dart';
+import '../../widget/text_fild.dart';
 
 
 class LoginPage extends StatefulWidget {

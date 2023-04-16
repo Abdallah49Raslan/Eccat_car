@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../core/colors.dart';
-import '../core/space.dart';
-import '../core/text_style.dart';
-import '../widget/main_button.dart';
+import 'package:security/core/colors.dart';
+import 'package:security/core/text_style.dart';
+import '../../core/space.dart';
+import '../../data/demo.dart';
+import '../../widget/main_button.dart';
 import 'login_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -59,7 +60,13 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ]),
                   ),
-                  const SpaceVH(height: 40.0),
+
+                  const SpaceVH(height: 20.0),
+                  Text(
+                    splashText,
+                    textAlign: TextAlign.center,
+                    style: headline2,
+                  ),
 
                   //start Button to go LoginPage
                   Mainbutton(

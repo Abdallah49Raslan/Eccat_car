@@ -1,24 +1,20 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+
+class IoTPage extends StatefulWidget {
+  const IoTPage({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<IoTPage> createState() => _IoTPageState();
 }
 
-class _HomeState extends State<Home> {
+class _IoTPageState extends State<IoTPage> {
   var refdb = FirebaseDatabase.instance.ref();
   dynamic display;
   dynamic break_display;
@@ -146,7 +142,7 @@ class _HomeState extends State<Home> {
                 TextStyle(color: Color.fromARGB(255, 24, 46, 126)),
               backgroundColor: Color(0xff2b2b2b),
             items: [
-              BottomNavigationBarItem(label: 'home', icon: Icon(Icons.home)),
+              BottomNavigationBarItem(label: 'IoTPage', icon: Icon(Icons.home)),
               BottomNavigationBarItem(
                   label: 'details', icon: Icon(Icons.table_chart))
             ]),

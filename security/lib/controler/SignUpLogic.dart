@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:security/page/Authintication/sign_up.dart';
 import '../page/Customer/Custom_start.dart';
 import '../page/Driver/Driver_start.dart';
-import '../page/sign_up.dart';
+
 
 class SignUpLogic extends StatelessWidget {
   final String email;

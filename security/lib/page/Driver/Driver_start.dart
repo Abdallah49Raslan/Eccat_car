@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../../Iot/mainpage.dart';
+import '../Authintication/login_page.dart';
 import '../Health Care/darkmode.dart';
-import '../login_page.dart';
+import '../Iot/mainpage.dart';
+
 
 class DriverStartPage extends StatelessWidget {
   const DriverStartPage({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class DriverStartPage extends StatelessWidget {
     // Callback function to navigate to IoT page
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const Home()),
+      MaterialPageRoute(builder: (context) => const IoTPage()),
     );
   }
 
