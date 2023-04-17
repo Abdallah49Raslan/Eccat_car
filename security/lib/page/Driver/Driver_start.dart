@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Authintication/login_page.dart';
 import '../Health Care/darkmode.dart';
 import '../Iot/mainpage.dart';
-
+import '../User_Profile.dart';
 
 class DriverStartPage extends StatelessWidget {
   const DriverStartPage({Key? key}) : super(key: key);
@@ -30,59 +30,57 @@ class DriverStartPage extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Start Page 2'),
-        actions: [
-          PopupMenuButton(
-            // Use PopupMenuButton to show the menu options
-            itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-              PopupMenuItem(
-                child: ListTile(
-                  title: const Text('Health Care'),
-                  onTap: () {
-                    Navigator.pop(context); // Close the menu
-                    _showHealthCare(
-                        context); // Call the callback function on button press
-                  },
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: Image.asset(
+                'assets/image/logo.png', // Replace with your logo image path
+                width: 32, // Set the width of the logo image
+                height: 32, // Set the height of the logo image
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search', // Placeholder for the search box
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                    border: InputBorder.none,
+                  ),
                 ),
               ),
-              PopupMenuItem(
-                child: ListTile(
-                  title: const Text('IoT'),
-                  onTap: () {
-                    Navigator.pop(context); // Close the menu
-                    _showIoT(
-                        context); // Call the callback function on button press
-                  },
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+            IconButton(
+              onPressed: () {
+                // Navigate to the user's account page
+                _showUserDetails(context);
+              },
+              icon: Icon(Icons.account_circle), // Add the account icon here
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
-              },
-              child: const Text(
-                'Log out',
-                style: TextStyle(fontSize: 18),
-              ),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              ),
-            ),
+
           ],
         ),
       ),
+    );
+  }
+  void _showUserDetails(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const UserDetailPage()),
     );
   }
 }

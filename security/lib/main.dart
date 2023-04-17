@@ -1,7 +1,8 @@
-import 'package:security/page/Authintication/spalsh_Page.dart';
+import 'package:security/page/Authintication/login_page.dart';
 import 'package:security/page/Driver/Driver_start.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:security/page/spalsh_Page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: themeData(),
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }

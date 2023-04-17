@@ -14,6 +14,7 @@ Widget textField({
   bool isObs = false,
   TextInputType? keyboardType,
   Widget? prefixIcon,
+  bool enabled = false,
 }) {
   return Container(
     height: 70.0,
