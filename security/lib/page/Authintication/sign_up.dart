@@ -23,6 +23,9 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController userPass = TextEditingController();
   TextEditingController userEmail = TextEditingController();
   TextEditingController userPh = TextEditingController();
+  TextEditingController personId = TextEditingController();
+  TextEditingController driverLicense = TextEditingController();
+
   bool _isScure = true;
   final List<String> options = ['Driver', 'Customer', 'Owner'];
 
@@ -34,7 +37,8 @@ class _SignUpPageState extends State<SignUpPage> {
   String? Name;
   String? phone;
   String? selectedOption;
-
+  String? UserID;
+  String? DriverLic;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -64,7 +68,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
 
                 //userName
-                const SpaceVH(height: 30.0),
                 textField(
                   onChanged: (data) {
                     Name = data;
@@ -130,7 +133,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 // user role
                 UserRoleDropdown(
                   hintTxt: 'Please select your role',
-                  options: const ['Driver', 'Customer'],
+                  options: options,
                   selectedOption: selectedOption,
                   prefixIcon: const Icon(Icons.person_outline_rounded),
                   onChanged: (newValue) {
@@ -144,7 +147,42 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
 
-              // sign up button
+// conditional text fields for driver ID and license number
+                if (selectedOption == 'Driver')
+                  Column(children: [
+                    textField(
+                      onChanged: (data) {
+                        UserID = data; // save driver ID data
+                      },
+                      controller: personId,
+                      prefixIcon: const Icon(Icons.credit_card_sharp),
+                      keyboardType: TextInputType.text,
+                      hintTxt: 'Driver ID',
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your driver ID';
+                        }
+                        return null;
+                      },
+                    ),
+                    textField(
+                      onChanged: (data) {
+                        DriverLic = data; // save driver license data
+                      },
+                      controller: driverLicense,
+                      prefixIcon: const Icon(Icons.credit_card),
+                      keyboardType: TextInputType.text,
+                      hintTxt: 'Driver License Number',
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your driver license number';
+                        }
+                        return null;
+                      },
+                    ),
+                  ]),
+
+                // sign up button
                 const SpaceVH(height: 50.0),
                 Mainbutton(
                   onTap: () {
@@ -158,6 +196,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             name: Name!,
                             phone: phone!,
                             role: selectedOption!,
+                            driverLicense: DriverLic!,
+                            personId: UserID!,
                           ),
                         ),
                       );

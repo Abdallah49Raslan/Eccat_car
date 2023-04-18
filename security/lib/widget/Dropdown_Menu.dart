@@ -90,4 +90,3 @@ class _UserRoleDropdownState extends State<UserRoleDropdown> {
     );
   }
 }
-

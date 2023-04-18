@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:security/core/space.dart';
 import 'package:security/page/Authintication/Forget_Pass.dart';
 import 'package:security/page/Authintication/sign_up.dart';
@@ -9,7 +10,6 @@ import '../../core/text_style.dart';
 import '../../widget/main_button.dart';
 import '../../widget/text_fild.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, String? errorMessage}) : super(key: key);
 
@@ -18,16 +18,33 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String _email = '';
+  String _password = '';
+
   TextEditingController userEmail = TextEditingController();
   TextEditingController userPass = TextEditingController();
   bool _isScure = true;
+  bool rememberMe = false;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  String? email;
-  String? password;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  GlobalKey<FormState> formKey =GlobalKey();
+  @override
+  void initState() {
+    super.initState();
+    _getEmailAndPassword();
+  }
+
+  void _getEmailAndPassword() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _email = prefs.getString('email') ?? '';
+      _password = prefs.getString('password') ?? '';
+      userEmail.text = _email;
+      userPass.text = _password;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.only(top: 50.0),
         child: SingleChildScrollView(
           child: Form(
-            key:formKey,
+            key: formKey,
             child: Column(
               children: [
                 //head of page
@@ -56,11 +73,11 @@ class _LoginPageState extends State<LoginPage> {
                 const SpaceVH(height: 60.0),
                 textField(
                   onChanged: (data) {
-                    email = data;
+                    _email = data;
                   },
                   controller: userEmail,
                   keyboardType: TextInputType.emailAddress,
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
                   hintTxt: 'Email Address',
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -72,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                 //Password
                 textField(
                   onChanged: (data) {
-                    password = data;
+                    _password = data;
                   },
                   controller: userPass,
                   prefixIcon: IconButton(
@@ -115,6 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+
                 //LogIn Button
                 const SpaceVH(height: 100.0),
                 Align(
@@ -124,17 +142,39 @@ class _LoginPageState extends State<LoginPage> {
                       Mainbutton(
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
+                            if (rememberMe) {
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setString('email', _email);
+                              prefs.setString('password', _password);
+                            }
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => LoginLogic(
-                                  email: email!,
-                                  password: password!,
+                                  email: _email,
+                                  password: _password,
                                 ),
-                              ),);
-                          }},
+                              ),
+                            );
+                          }
+                        },
                         text: 'Sign in',
                         btnColor: blueButton,
+                      ),
+
+                      CheckboxListTile(
+                        value: rememberMe,
+                        onChanged: (value) {
+                          setState(() {
+                            rememberMe = value!;
+                          });
+                        },
+                        title: const Text(
+                          'Remember me',
+                          style: headline2,
+                        ),
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
 
                       //switch to signUp

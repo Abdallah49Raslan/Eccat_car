@@ -5,13 +5,14 @@ import 'package:security/page/Authintication/sign_up.dart';
 import '../page/Customer/Custom_start.dart';
 import '../page/Driver/Driver_start.dart';
 
-
 class SignUpLogic extends StatelessWidget {
   final String email;
   final String password;
   final String name;
   final String phone;
   final String role;
+  final String personId;
+  final String driverLicense;
 
   const SignUpLogic({
     Key? key,
@@ -20,6 +21,8 @@ class SignUpLogic extends StatelessWidget {
     required this.name,
     required this.phone,
     required this.role,
+    required this.personId,
+    required this.driverLicense,
   }) : super(key: key);
 
   @override
@@ -52,11 +55,11 @@ class SignUpLogic extends StatelessWidget {
 
   Future<bool> createUser(BuildContext context) async {
     try {
-        // check if email already exists in Firebase Auth
+      // check if email already exists in Firebase Auth
       List<String> signInMethods =
-      await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+          await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
       if (signInMethods.isNotEmpty) {
-          // show error message using SnackBar
+        // show error message using SnackBar
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Row(
@@ -85,7 +88,9 @@ class SignUpLogic extends StatelessWidget {
         'email': email,
         'phone': phone,
         'password': password,
-        'user' : role,
+        'user': role,
+        'Driver ID': personId,
+        'Driver License Number': driverLicense,
       });
 
       return true;
