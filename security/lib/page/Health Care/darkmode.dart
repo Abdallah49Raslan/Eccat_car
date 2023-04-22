@@ -3,9 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../core/constants.dart';
-
+import 'package:security/core/colors.dart';
 
 class darkmode extends StatefulWidget {
   const darkmode({super.key});

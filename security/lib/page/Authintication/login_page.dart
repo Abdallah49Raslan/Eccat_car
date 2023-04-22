@@ -30,7 +30,6 @@ class _LoginPageState extends State<LoginPage> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  @override
   void initState() {
     super.initState();
     _getEmailAndPassword();
@@ -38,12 +37,15 @@ class _LoginPageState extends State<LoginPage> {
 
   void _getEmailAndPassword() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _email = prefs.getString('email') ?? '';
-      _password = prefs.getString('password') ?? '';
-      userEmail.text = _email;
-      userPass.text = _password;
-    });
+    bool rememberMe = prefs.getBool('rememberMe') ?? false;
+    if (rememberMe) {
+      setState(() {
+        _email = prefs.getString('email') ?? '';
+        _password = prefs.getString('password') ?? '';
+        userEmail.text = _email;
+        userPass.text = _password;
+      });
+    }
   }
 
   @override
@@ -57,6 +59,16 @@ class _LoginPageState extends State<LoginPage> {
             key: formKey,
             child: Column(
               children: [
+                //logo image
+                Container(
+                  alignment: Alignment.center,
+                  height: 150,
+                  child: Image.asset(
+                    'assets/image/logo.png',
+                    width: 150,
+                  ),
+                ),
+
                 //head of page
                 const SpaceVH(height: 50.0),
                 const Text(
@@ -70,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: headline3,
                 ),
                 //userEmail
-                const SpaceVH(height: 60.0),
+                const SpaceVH(height: 20.0),
                 textField(
                   onChanged: (data) {
                     _email = data;
@@ -86,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
+
                 //Password
                 textField(
                   onChanged: (data) {
@@ -112,6 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
+
                 //forgetPass
                 const SpaceVH(height: 10.0),
                 Align(
@@ -134,11 +148,37 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 //LogIn Button
-                const SpaceVH(height: 100.0),
+                const SpaceVH(height: 20.0),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Column(
                     children: [
+                      CheckboxListTile(
+                        value: rememberMe,
+                        onChanged: (value) async {
+                          setState(() {
+                            rememberMe = value!;
+                          });
+                          if (rememberMe) {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString('email', _email);
+                            prefs.setString('password', _password);
+                          } else {
+                            // If "Remember me" is not checked, clear the saved email and password
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.remove('email');
+                            prefs.remove('password');
+                          }
+                        },
+                        title: const Text(
+                          'Remember me',
+                          style: headline2,
+                        ),
+                        controlAffinity: ListTileControlAffinity.leading,
+                      ),
+
                       Mainbutton(
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
@@ -161,20 +201,6 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         text: 'Sign in',
                         btnColor: blueButton,
-                      ),
-
-                      CheckboxListTile(
-                        value: rememberMe,
-                        onChanged: (value) {
-                          setState(() {
-                            rememberMe = value!;
-                          });
-                        },
-                        title: const Text(
-                          'Remember me',
-                          style: headline2,
-                        ),
-                        controlAffinity: ListTileControlAffinity.leading,
                       ),
 
                       //switch to signUp

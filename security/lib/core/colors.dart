@@ -12,6 +12,9 @@ const Color black = Color(0xFF000000);
 const Color blackBG = Color(0xFF181A20);
 const Color blackTextFild = Color(0xFF262A34);
 
+const Color primaryColor = Color.fromARGB(255, 60, 177, 95);
+const Color redColor = Color(0XFFFF5368);
+
 const List<Color> gradient = [
   Color.fromRGBO(24, 26, 32, 1),
   Color.fromRGBO(24, 26, 32, 0.9),
