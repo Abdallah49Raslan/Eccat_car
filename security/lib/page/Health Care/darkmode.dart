@@ -5,14 +5,14 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:security/core/colors.dart';
 
-class darkmode extends StatefulWidget {
-  const darkmode({super.key});
+class HealthCareDriver extends StatefulWidget {
+  const HealthCareDriver({super.key});
 
   @override
-  State<darkmode> createState() => _darkmodeState();
+  State<HealthCareDriver> createState() => _darkmodeState();
 }
 
-class _darkmodeState extends State<darkmode> {
+class _darkmodeState extends State<HealthCareDriver> {
   String Driverheart = "";
   String Drivertemp = "";
   String Driveroxi = "";

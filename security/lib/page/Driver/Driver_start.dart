@@ -13,7 +13,7 @@ class DriverStartPage extends StatelessWidget {
     // Callback function to navigate to Health Care page
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const darkmode()),
+      MaterialPageRoute(builder: (context) => const HealthCareDriver()),
     );
   }
 
