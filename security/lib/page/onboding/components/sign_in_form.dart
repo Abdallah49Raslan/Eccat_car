@@ -44,13 +44,13 @@ class _SignInFormState extends State<SignInForm> {
       isShowConfetti = true;
     });
     Future.delayed(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       () {
         if (formKey.currentState!.validate()) {
           // If everything looks good it shows the success animation
           check.fire();
           Future.delayed(
-            Duration(seconds: 2),
+            const Duration(seconds: 2),
             () {
               setState(() {
                 isShowLoading = false;
@@ -61,7 +61,7 @@ class _SignInFormState extends State<SignInForm> {
               confetti.fire();
               // Once all success we will navigate to the Next screen
               Future.delayed(
-                Duration(seconds: 1),
+                const Duration(seconds: 1),
                 () async {
                   if (formKey.currentState != null &&
                       formKey.currentState!.validate()) {
@@ -150,7 +150,12 @@ class _SignInFormState extends State<SignInForm> {
                   padding: const EdgeInsets.only(right: 20.0),
                   child: TextButton(
                     onPressed: () {
-                      signIn(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ForgetPassword(),
+                        ),
+                      );
                     },
                     child: const Text(
                       'Forgot Password?',
@@ -220,7 +225,7 @@ class _SignInFormState extends State<SignInForm> {
                   ),
                 ),
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }
@@ -238,13 +243,13 @@ class CustomPositioned extends StatelessWidget {
       // Let's make it small
       child: Column(
         children: [
-          Spacer(),
+          const Spacer(),
           SizedBox(
             height: size,
             width: size,
             child: child,
           ),
-          Spacer(flex: 2),
+          const Spacer(flex: 2),
         ],
       ),
     );

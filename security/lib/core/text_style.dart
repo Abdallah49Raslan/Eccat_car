@@ -14,8 +14,8 @@ const TextStyle headline = TextStyle(
 );
 
 const TextStyle headlineDot = TextStyle(
-  fontSize: 30,
-  color: blueText,
+  fontSize: 16,
+  color: blackBG,
   fontWeight: FontWeight.bold,
 );
 const TextStyle headline1 = TextStyle(

@@ -38,13 +38,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 const SpaceVH(height: 50.0),
                 const Text(
                   'Forget Password',
-                  style: headline1,
+                  style: headline,
                 ),
                 //text hint
-                const SpaceVH(height: 10.0),
+                const SpaceVH(height: 30.0),
                 const Text(
                   'Please enter your email address to reset your password',
-                  style: headline3,
+                  textAlign: TextAlign.center,
+                  style: headline4,
                 ),
                 //email
                 const SizedBox(height: 100.0),
@@ -88,8 +89,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                     .sendPasswordResetEmail(
                                         email: _emailController.text.trim());
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text(
+                                  const SnackBar(
+                                    content: Text(
                                       'A password reset link has been sent to your email.',
                                     ),
                                   ),
@@ -133,18 +134,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           );
                         },
                         child: RichText(
-                          text: TextSpan(children: [
+                          text: const TextSpan(children: [
                             TextSpan(
                               text: 'Remember the password ! ',
-                              style: headline.copyWith(
-                                fontSize: 14.0,
-                              ),
+                              style: headline3,
                             ),
                             TextSpan(
                               text: ' Login',
-                              style: headlineDot.copyWith(
-                                fontSize: 14.0,
-                              ),
+                              style: headline4,
                             ),
                           ]),
                         ),

@@ -13,7 +13,6 @@ import 'components/animated_btn.dart';
 import 'components/custom_sign_in_dialog.dart';
 import 'components/sign_in_form.dart';
 
-
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -99,12 +98,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Future.delayed(
                           const Duration(milliseconds: 800),
                           () {
-                            // We made it but
-                            // also need to set it false once the dialog close
                             setState(() {
                               isSignInDialogShown = true;
                             });
-                            // Let's add the slide animation while dialog shows
+
                             customSigninDialog(
                               context,
                               onCLosed: (_) {

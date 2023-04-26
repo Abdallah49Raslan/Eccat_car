@@ -45,6 +45,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: blackBG,
       body: Padding(
         padding: const EdgeInsets.only(top: 50.0),
         child: SingleChildScrollView(
@@ -56,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SpaceVH(height: 50.0),
                 const Text(
                   'Create new account',
-                  style: TextStyle(fontSize: 34, fontFamily: "Poppins"),
+                  style: headline,
                 ),
 
                 //text hint
@@ -216,13 +217,10 @@ class _SignUpPageState extends State<SignUpPage> {
                     Navigator.pop(context);
                   },
                   child: RichText(
-                    text: TextSpan(children: [
+                    text: const TextSpan(children: [
                       TextSpan(
                         text: 'Have an account? ',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                            fontFamily: "Intel"),
+                        style: headline3,
                       ),
                       TextSpan(
                         text: ' Sign In',

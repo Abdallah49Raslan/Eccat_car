@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:rive/rive.dart';
 
+import '../../../core/text_style.dart';
+
 class AnimatedBtn extends StatelessWidget {
   const AnimatedBtn({
     Key? key,
@@ -38,8 +40,8 @@ class AnimatedBtn extends StatelessWidget {
                   Icon(CupertinoIcons.arrow_right),
                   SizedBox(width: 8),
                   Text(
-                    "Start the course",
-                    style: TextStyle(fontWeight: FontWeight.w600),
+                    "Start The Car App",
+                    style: headlineDot,
                   ),
                 ],
               ),

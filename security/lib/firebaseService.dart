@@ -1,13 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseService {
   // Initialize Firebase
-
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   FirebaseFirestore get db => _firestore;
+
   static Future<void> initializeFirebase() async {
     await Firebase.initializeApp();
   }
@@ -30,8 +31,36 @@ class FirebaseService {
     await FirebaseAuth.instance.signOut();
   }
 
+  static Future<UserCredential?> signInWithGoogle() async {
+    try {
+      // Trigger the Google sign-in flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
+
+      // Create a new credential
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Sign in to Firebase with the Google credential
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      return userCredential;
+    } catch (e) {
+      // Handle any authentication errors
+      print('Error: $e');
+      return null;
+    }
+  }
+
   // Firestore
-  static Future<DocumentSnapshot?> getDocument(String collection, String docId) async {
+  static Future<DocumentSnapshot?> getDocument(
+      String collection, String docId) async {
     try {
       DocumentSnapshot docSnapshot = await FirebaseFirestore.instance
           .collection(collection)
@@ -47,9 +76,8 @@ class FirebaseService {
 
   static Future<QuerySnapshot?> getDocuments(String collection) async {
     try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection(collection)
-          .get();
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection(collection).get();
       return querySnapshot;
     } catch (e) {
       // Handle any Firestore errors
@@ -61,9 +89,8 @@ class FirebaseService {
   static Future<DocumentReference?> addDocument(
       String collection, Map<String, dynamic> data) async {
     try {
-      DocumentReference docRef = await FirebaseFirestore.instance
-          .collection(collection)
-          .add(data);
+      DocumentReference docRef =
+          await FirebaseFirestore.instance.collection(collection).add(data);
       return docRef;
     } catch (e) {
       // Handle any Firestore errors
