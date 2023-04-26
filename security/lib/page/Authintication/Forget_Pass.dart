@@ -8,6 +8,7 @@ import 'package:security/widget/main_button.dart';
 import 'package:security/widget/text_fild.dart';
 import 'package:security/core/space.dart';
 
+import '../onboding/onboding_screen.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);
@@ -71,18 +72,21 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           if (formKey.currentState!.validate()) {
                             try {
                               // Check if email is signed up
-                              List<String> signInMethods = await FirebaseAuth.instance
+                              List<String> signInMethods = await FirebaseAuth
+                                  .instance
                                   .fetchSignInMethodsForEmail(
-                                  _emailController.text.trim());
+                                      _emailController.text.trim());
                               if (signInMethods.isEmpty) {
                                 // Email does not exist
                                 setState(() {
-                                  _errorMessage = 'No user found for that email address.';
+                                  _errorMessage =
+                                      'No user found for that email address.';
                                 });
                               } else {
                                 // Reset password
-                                await FirebaseAuth.instance.sendPasswordResetEmail(
-                                    email: _emailController.text.trim());
+                                await FirebaseAuth.instance
+                                    .sendPasswordResetEmail(
+                                        email: _emailController.text.trim());
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: const Text(
@@ -98,16 +102,19 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                 });
                               } else if (e.code == 'user-not-found') {
                                 setState(() {
-                                  _errorMessage = 'No user found for that email address.';
+                                  _errorMessage =
+                                      'No user found for that email address.';
                                 });
                               } else {
                                 setState(() {
-                                  _errorMessage = 'An error occurred. Please try again later.';
+                                  _errorMessage =
+                                      'An error occurred. Please try again later.';
                                 });
                               }
                             } catch (e) {
                               setState(() {
-                                _errorMessage = 'An error occurred. Please try again later.';
+                                _errorMessage =
+                                    'An error occurred. Please try again later.';
                               });
                             }
                           }
@@ -121,7 +128,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (builder) => const LoginPage(),
+                              builder: (builder) => const OnboardingScreen(),
                             ),
                           );
                         },

@@ -17,11 +17,11 @@ Widget textField({
   bool enabled = false,
 }) {
   return Container(
-    height: 70.0,
-    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+    height: 60.0,
+    padding: const EdgeInsets.symmetric(horizontal: 10.0),
     margin: const EdgeInsets.symmetric(
-      horizontal: 20.0,
-      vertical: 10.0,
+      horizontal: 8.0,
+      vertical: 8.0,
     ),
     decoration: BoxDecoration(
       color: blackTextFild,
@@ -42,7 +42,8 @@ Widget textField({
               border: InputBorder.none,
               hintText: hintTxt,
               hintStyle: hintStyle,
-              prefixIcon: prefixIcon, // Add prefixIcon parameter to InputDecoration
+              prefixIcon:
+                  prefixIcon, // Add prefixIcon parameter to InputDecoration
               errorStyle: TextStyle(color: Colors.red),
             ),
             style: headline2,

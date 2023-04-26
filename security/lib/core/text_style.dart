@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
+const TextStyle headPage = TextStyle(
+  fontSize: 60,
+  color: whiteText,
+  fontFamily: "Poppins",
+);
 
 const TextStyle headline = TextStyle(
   fontSize: 36,
@@ -33,4 +38,10 @@ const TextStyle hintStyle = TextStyle(
   fontSize: 16,
   color: grayText,
   fontWeight: FontWeight.bold,
+);
+
+const TextStyle headline4 = TextStyle(
+  fontSize: 16,
+  color: redColor,
+  fontFamily: "Poppins",
 );

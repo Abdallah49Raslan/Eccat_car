@@ -5,6 +5,7 @@ import '../../core/space.dart';
 import '../../data/demo.dart';
 import '../../widget/main_button.dart';
 import 'Authintication/login_page.dart';
+import 'onboding/onboding_screen.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (builder) => const LoginPage()));
+                              builder: (builder) => const OnboardingScreen()));
                     },
                     btnColor: blueButton,
                     text: 'Get Started',

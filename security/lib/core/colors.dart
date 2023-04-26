@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 const Color blueButton = Color(0xFF5468FF);
 const Color blueText = Color(0xFF4D60E7);
@@ -11,6 +12,12 @@ const Color black = Color(0xFF000000);
 
 const Color blackBG = Color(0xFF181A20);
 const Color blackTextFild = Color(0xFF262A34);
+
+const Color backgroundColor2 = Color(0xFF17203A);
+const Color backgroundColorLight = Color(0xFFF2F6FF);
+const Color backgroundColorDark = Color(0xFF25254B);
+const Color shadowColorLight = Color(0xFF4A5367);
+const Color shadowColorDark = Colors.black;
 
 const Color primaryColor = Color.fromARGB(255, 60, 177, 95);
 const Color redColor = Color(0XFFFF5368);

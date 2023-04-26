@@ -5,9 +5,9 @@ import 'package:security/page/Authintication/login_page.dart';
 import '../page/Customer/Custom_start.dart';
 import '../page/Driver/Driver_start.dart';
 import '../page/Owner/Owner_start.dart';
+import '../page/onboding/onboding_screen.dart';
 
 class LoginLogic extends StatelessWidget {
-
   final String? email;
   final String? password;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -30,7 +30,7 @@ class LoginLogic extends StatelessWidget {
           );
         } else {
           // Show a login form or other content if the login process has not started yet
-          return LoginPage();
+          return OnboardingScreen();
         }
       },
     );
@@ -42,10 +42,8 @@ class LoginLogic extends StatelessWidget {
 
       if (email != null && password != null) {
         // Sign in with email and password
-        userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: email!,
-            password: password!
-        );
+        userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email!, password: password!);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -66,10 +64,10 @@ class LoginLogic extends StatelessWidget {
         // Check user's role in Cloud Firestore
         String? user = null; // Declare the role variable before using it
         DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(userCredential.user!.uid)
-            .get();
+            await FirebaseFirestore.instance
+                .collection('users')
+                .doc(userCredential.user!.uid)
+                .get();
 
         if (documentSnapshot != null && documentSnapshot.exists) {
           user = documentSnapshot.data()!['user'];
@@ -125,7 +123,6 @@ class LoginLogic extends StatelessWidget {
 
         return true;
       } else {
-
         return false;
       }
     } on FirebaseAuthException catch (ex) {
@@ -136,10 +133,10 @@ class LoginLogic extends StatelessWidget {
         errorMessage = 'Incorrect password';
       } else if (ex.code == 'network-request-failed') {
         errorMessage =
-        'Network error. Please check your connection and try again.';
+            'Network error. Please check your connection and try again.';
       } else if (ex.code == 'operation-not-allowed') {
         errorMessage =
-        'Signing in with email and password is not enabled. Please contact the app administrator.';
+            'Signing in with email and password is not enabled. Please contact the app administrator.';
       } else {
         errorMessage = 'An error occurred. Please try again later.';
         debugPrint(ex.toString()); // log the error for debugging purposes
