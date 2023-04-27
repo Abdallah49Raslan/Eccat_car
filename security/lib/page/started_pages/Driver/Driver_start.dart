@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:security/core/text_style.dart';
 import 'package:security/page/Iot/mainpage.dart';
-
+import 'package:external_app_launcher/external_app_launcher.dart';
 import '../../../core/colors.dart';
 import '../../../core/space.dart';
 import '../../Health Care/darkmode.dart';
@@ -101,7 +101,15 @@ class _DriverStartPageState extends State<DriverStartPage> {
                             const EdgeInsetsDirectional.fromSTEB(20, 20, 0, 10),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          await LaunchApp.openApp(
+                            androidPackageName: 'com.google.android.apps.maps',
+                            iosUrlScheme: 'comgooglemaps://',
+                            appStoreLink:
+                                'https://apps.apple.com/us/app/google-maps/id585027354',
+                            // openStore: false
+                          );
+                        },
                         child: Column(
                           children: [
                             const SpaceVH(height: 30.0),
