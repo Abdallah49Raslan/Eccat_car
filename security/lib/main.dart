@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'entry_point.dart';
 import 'firebase_options.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
