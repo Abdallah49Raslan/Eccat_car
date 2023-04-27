@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/Authintication/sign_up.dart';
-import '../page/Customer/Custom_start.dart';
-import '../page/Driver/Driver_start.dart';
+
+import '../page/started_pages/Customer/Custom_start.dart';
+import '../page/started_pages/Driver/Driver_start.dart';
 
 class SignUpLogic extends StatelessWidget {
   final String email;
@@ -32,15 +33,19 @@ class SignUpLogic extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Show a loading widget while waiting for the sign-up process to finish
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (snapshot.hasData && snapshot.data!) {
           // Check the user role and navigate to the appropriate start page
           if (role == 'Driver') {
+<<<<<<< HEAD
             return Desert();
+=======
+            return const DriverStartPage();
+>>>>>>> 23ed3eb9e21ebfd045f136dcd040d458c66fa682
           } else if (role == 'Customer') {
-            return CustomerStartPage();
+            return const CustomerStartPage();
           }
         } else if (snapshot.hasError) {
           // Handle any errors that may occur during sign-up
@@ -48,7 +53,7 @@ class SignUpLogic extends StatelessWidget {
         }
 
         // Add a default return statement to ensure that the return type is non-nullable
-        return SignUpPage();
+        return const SignUpPage();
       },
     );
   }
@@ -64,9 +69,9 @@ class SignUpLogic extends StatelessWidget {
           SnackBar(
             content: Row(
               children: [
-                Icon(Icons.error_outline),
-                SizedBox(width: 10),
-                Text('Email already exists'),
+                const Icon(Icons.error_outline),
+                const SizedBox(width: 10),
+                const Text('Email already exists'),
               ],
             ),
             behavior: SnackBarBehavior.floating, // set behavior to floating
@@ -111,8 +116,8 @@ class SignUpLogic extends StatelessWidget {
         SnackBar(
           content: Row(
             children: [
-              Icon(Icons.error_outline),
-              SizedBox(width: 10),
+              const Icon(Icons.error_outline),
+              const SizedBox(width: 10),
               Text(errorMessage),
             ],
           ),

@@ -57,17 +57,18 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SpaceVH(height: 50.0),
                 const Text(
                   'Create new account',
-                  style: headline1,
+                  style: headline,
                 ),
 
                 //text hint
                 const SpaceVH(height: 10.0),
                 const Text(
                   'Please fill in the form to continue',
-                  style: headline3,
+                  style: headline4,
                 ),
 
                 //userName
+                const SpaceVH(height: 20.0),
                 textField(
                   onChanged: (data) {
                     Name = data;
@@ -156,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       },
                       controller: personId,
                       prefixIcon: const Icon(Icons.credit_card_sharp),
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       hintTxt: 'Driver ID',
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -171,7 +172,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       },
                       controller: driverLicense,
                       prefixIcon: const Icon(Icons.credit_card),
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       hintTxt: 'Driver License Number',
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -183,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ]),
 
                 // sign up button
-                const SpaceVH(height: 50.0),
+                const SpaceVH(height: 30.0),
                 Mainbutton(
                   onTap: () {
                     if (formKey.currentState!.validate()) {
@@ -216,18 +217,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     Navigator.pop(context);
                   },
                   child: RichText(
-                    text: TextSpan(children: [
+                    text: const TextSpan(children: [
                       TextSpan(
                         text: 'Have an account? ',
-                        style: headline.copyWith(
-                          fontSize: 14.0,
-                        ),
+                        style: headline3,
                       ),
                       TextSpan(
                         text: ' Sign In',
-                        style: headlineDot.copyWith(
-                          fontSize: 14.0,
-                        ),
+                        style: headline4,
                       ),
                     ]),
                   ),
