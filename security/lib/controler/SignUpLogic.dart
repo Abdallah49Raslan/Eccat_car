@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/Authintication/sign_up.dart';
-
+import '../entry_customer.dart';
+import '../entry_point.dart';
 import '../page/started_pages/Customer/Custom_start.dart';
-import '../page/started_pages/Driver/Driver_start.dart';
+
 
 class SignUpLogic extends StatelessWidget {
   final String email;
@@ -12,19 +13,20 @@ class SignUpLogic extends StatelessWidget {
   final String name;
   final String phone;
   final String role;
-  final String personId;
-  final String driverLicense;
+  final String? personId;
+  final String ?driverLicense;
 
   const SignUpLogic({
-    Key? key,
-    required this.email,
-    required this.password,
-    required this.name,
-    required this.phone,
-    required this.role,
-    required this.personId,
-    required this.driverLicense,
-  }) : super(key: key);
+  Key? key,
+  required this.email,
+  required this.password,
+  required this.name,
+  required this.phone,
+  required this.role,
+  this.personId, // make personId optional
+  this.driverLicense, // make driverLicense optional
+}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +41,9 @@ class SignUpLogic extends StatelessWidget {
         } else if (snapshot.hasData && snapshot.data!) {
           // Check the user role and navigate to the appropriate start page
           if (role == 'Driver') {
-<<<<<<< HEAD
-            return Desert();
-=======
-            return const DriverStartPage();
->>>>>>> 23ed3eb9e21ebfd045f136dcd040d458c66fa682
+            return const EntryDriver();
           } else if (role == 'Customer') {
-            return const CustomerStartPage();
+            return const entry_customer();
           }
         } else if (snapshot.hasError) {
           // Handle any errors that may occur during sign-up

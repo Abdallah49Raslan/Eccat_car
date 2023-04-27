@@ -4,10 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/Authintication/login_page.dart';
+import '../entry_Owner.dart';
+import '../entry_customer.dart';
 import '../entry_point.dart';
 import '../page/onboding/onboding_screen.dart';
 import '../page/started_pages/Customer/Custom_start.dart';
-import '../page/started_pages/Driver/Driver_start.dart';
 import '../page/started_pages/Owner/Owner_start.dart';
 
 class LoginLogic extends StatelessWidget {
@@ -80,21 +81,17 @@ class LoginLogic extends StatelessWidget {
             
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const OwnerStartPage()),
+              MaterialPageRoute(builder: (context) => const EntryOwner()),
             );
           } else if (user == 'Driver') {
             Navigator.pushReplacement(
               context,
-<<<<<<< HEAD
-              MaterialPageRoute(builder: (context) => Desert()),
-=======
-              MaterialPageRoute(builder: (context) => const EntryPoint()),
->>>>>>> 23ed3eb9e21ebfd045f136dcd040d458c66fa682
+              MaterialPageRoute(builder: (context) => const EntryDriver()),
             );
           } else if (user == 'Customer') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const CustomerStartPage()),
+              MaterialPageRoute(builder: (context) => const entry_customer()),
             );
           } else {
             // If role is not recognized, show an error message and return false
