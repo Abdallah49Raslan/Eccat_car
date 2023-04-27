@@ -3,6 +3,8 @@ import 'package:security/page/Customer/Custom_start.dart';
 import 'package:security/page/Driver/Driver_start.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:security/page/Health%20Care/darkmode.dart';
+import 'package:security/page/Iot/mainpage.dart';
 import 'package:security/page/Owner/Owner_start.dart';
 import 'package:security/page/spalsh_Page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +23,7 @@ void main() async {
   } else if (role == 'owner') {
     startPage = OwnerStartPage();
   } else if (role == 'driver') {
-    startPage = DriverStartPage();
+    startPage = Desert();
   } else if (role == 'customer') {
     startPage = CustomerStartPage();
   } else {
@@ -46,7 +48,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: themeData(),
-      home: startPage,
+      home: Desert(),
+      routes: {
+        'darkmode':(context)=>darkmode(),
+        'iot':(context) => IoTPage()
+      },
     );
   }
 }

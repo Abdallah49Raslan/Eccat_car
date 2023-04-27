@@ -67,10 +67,7 @@ class _IoTPageState extends State<IoTPage> {
 
   @override
   void initState() {
-    // sc = StreamController();
-    // getdata();
-
-    //  batteryliseneers();
+   
     lightliseners();
     breaklisteners();
     sebelisteners();
@@ -78,56 +75,19 @@ class _IoTPageState extends State<IoTPage> {
     super.initState();
   }
 
-  // @override
-  // void initState() {
-  //   sc = StreamController();
-  //   Timer.periodic(Duration(seconds: 1), (_) {});
-
-  //   cdm.getToken().then((value) {
-  //     print('======================');
-
-  //     print(value);
-
-  //     print('======================');
-  //   });
-
-  //   FirebaseMessaging.onMessageOpenedApp.listen((event) {
-  //     Navigator.of(context).pushNamed('desert');
-  //   });
-
-  //   FirebaseMessaging.onMessage.listen((event) {
-  //     print('=====================data notification===================');
-  //     AwesomeDialog(
-  //         context: context,
-  //         title: 'title',
-  //         body: Text('${event.notification?.body}'),
-  //         dialogBackgroundColor: Colors.white)
-  //       ..show();
-  //   });
-
-  //   super.initState();
-  // }
-
   int selectedindex = 0;
   @override
   Widget build(BuildContext context) {
     var temp = refdb.child('temp');
     var light = refdb.child('light');
     var breaks = refdb.child('breaks');
-    // var seatbelt = refdb.child('seatbelt');
+     var seatbelt = refdb.child('seatbelt');
     var speed = refdb.child('speed');
     var battery = refdb.child('battery');
 
-    // @override
-    // void initState() {
-    //   sc = StreamController();
-    //   getdata();
-
-    //   super.initState();
-    // }
 
     return Scaffold(
-      backgroundColor: Color(0xff2b2b2b),
+      backgroundColor: Colors.black87,
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: selectedindex,
             onTap: (index) {
@@ -140,14 +100,14 @@ class _IoTPageState extends State<IoTPage> {
             iconSize: 30,
             selectedLabelStyle:
                 TextStyle(color: Color.fromARGB(255, 24, 46, 126)),
-              backgroundColor: Color(0xff2b2b2b),
+              backgroundColor: Colors.white10,
             items: [
               BottomNavigationBarItem(label: 'IoTPage', icon: Icon(Icons.home)),
               BottomNavigationBarItem(
                   label: 'details', icon: Icon(Icons.table_chart))
             ]),
         appBar: AppBar(
-          backgroundColor: Color(0xff2b2b2b),
+          backgroundColor: Colors.white10,
           actions: [
             IconButton(
                 iconSize: 30,
@@ -155,12 +115,12 @@ class _IoTPageState extends State<IoTPage> {
                 icon: Icon(Icons.account_circle_outlined))
           ],
         ),
-        drawer: Drawer(),
+       
         body: Container(
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-            color: Color(0xff2b2b2b)
+            color: Colors.white10
             ),
             child: SingleChildScrollView(
                 child: Column(children: [
@@ -199,9 +159,9 @@ class _IoTPageState extends State<IoTPage> {
                 ),
               ),
               InkWell(
-                  onTap: () async {
-                    await battery.set({'batt': 30});
-                  },
+                  // onTap: () async {
+                  //   await battery.set({'batt': 30});
+                  // },
                   child: Expanded(
                       child: Container(
                           child: StreamBuilder(
@@ -281,9 +241,9 @@ class _IoTPageState extends State<IoTPage> {
                   ),
                 ),
                 InkWell(
-                    onTap: () async {
-                      await speed.set({'speed': 100});
-                    },
+                    // onTap: () async {
+                    //   await speed.set({'speed': 100});
+                    // },
                     child: Container(
                         margin: EdgeInsets.only(top: 20),
                         width: 400,
@@ -295,7 +255,7 @@ class _IoTPageState extends State<IoTPage> {
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
                                   dynamic num = 55.toDouble();
-                                  //  double f=0.1;
+                                   double f=0.1;
                                   num = snapshot.data?.snapshot.value;
 
                                   if (num >= 140) {
@@ -340,14 +300,14 @@ class _IoTPageState extends State<IoTPage> {
                                       RadialAxis(
                                         minimum: 0,
                                         maximum: 200,
-                                        //  axisLineStyle:AxisLineStyle(color: Colors.white) ,
+                                         axisLineStyle:AxisLineStyle(color: Colors.white) ,
                                         axisLabelStyle: GaugeTextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
 
                                         pointers: <GaugePointer>[
                                           NeedlePointer(
-                                            //needleColor: Colors.white,
+                                            needleColor: Colors.white,
                                             value: num,
                                             enableAnimation: true,
                                           )
@@ -383,9 +343,9 @@ class _IoTPageState extends State<IoTPage> {
                                           )
                                         ],
                                       )
-                                    ],
-                                    backgroundColor:
-                                        Color(0xff2b2b2b),
+                                    ]
+                                    // backgroundColor:
+                                    //     Colors.black26,
                                   );
                                 } else {
                                   return SfRadialGauge(
@@ -395,7 +355,7 @@ class _IoTPageState extends State<IoTPage> {
                                       RadialAxis(
                                         minimum: 0,
                                         maximum: 200,
-                                        //  axisLineStyle:AxisLineStyle(color: Colors.white) ,
+                                         axisLineStyle:AxisLineStyle(color: Colors.white) ,
                                         axisLabelStyle: GaugeTextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
@@ -440,7 +400,7 @@ class _IoTPageState extends State<IoTPage> {
                                       )
                                     ],
                                     backgroundColor:
-                                        Color.fromARGB(255, 8, 21, 65),
+                                        Colors.white10,
                                   );
                                 }
                               }),
@@ -449,13 +409,13 @@ class _IoTPageState extends State<IoTPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap: () async {
-                        await temp.set({'temp': '20'});
-                      },
+                      // onTap: () async {
+                      //   await temp.set({'temp': '20'});
+                      // },
                       child: Container(
                         padding: EdgeInsets.only(top: 10, left: 10),
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 56, 56, 56),
+                            color: Colors.white10,
                             borderRadius: BorderRadius.circular(15)),
                         width: 150,
                         height: 150,
@@ -507,15 +467,15 @@ class _IoTPageState extends State<IoTPage> {
                       width: 10,
                     ),
                     InkWell(
-                      onTap: () async {
-                        await light.set({'1': 'on', '2': 'off'});
-                      },
+                      // onTap: () async {
+                      //   await light.set({'1': 'on', '2': 'off'});
+                      // },
                       child: Container(
                         width: 150,
                         height: 150,
                         padding: EdgeInsets.only(top: 10, left: 10),
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 56, 56, 56),
+                            color: Colors.white10,
                             borderRadius: BorderRadius.circular(15)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -572,13 +532,13 @@ class _IoTPageState extends State<IoTPage> {
                 Divider(),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   InkWell(
-                      onTap: () async {
-                        await breaks.set({'1': 'exellent', '2': 'breakdown'});
-                      },
+                      // onTap: () async {
+                      //   await breaks.set({'1': 'exellent', '2': 'breakdown'});
+                      // },
                       child: Container(
                           padding: EdgeInsets.only(top: 10, left: 10),
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 56, 56, 56),
+                              color: Colors.white10,
                               borderRadius: BorderRadius.circular(15)),
                           width: 150,
                           height: 200,
@@ -634,14 +594,15 @@ class _IoTPageState extends State<IoTPage> {
                     width: 10,
                   ),
                   InkWell(
-                      onTap: () async {
-                        // await seatbelt.set(
-                        //     {'1': 'active', '2': 'inactive'});
-                      },
+                      // onTap: () async {
+                      //   await seatbelt.set(
+                      //       {'1': 'active', '2': 'inactive'});
+                      // },
                       child: Container(
                           padding: EdgeInsets.only(top: 10, left: 10),
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 56, 56, 56),
+                              color: Colors.white10,
+                            
                               borderRadius: BorderRadius.circular(15)),
                           width: 150,
                           height: 200,
