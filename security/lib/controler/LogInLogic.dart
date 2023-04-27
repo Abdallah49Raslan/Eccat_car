@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/Authintication/login_page.dart';
+import '../entry_point.dart';
 import '../page/onboding/onboding_screen.dart';
 import '../page/started_pages/Customer/Custom_start.dart';
 import '../page/started_pages/Driver/Driver_start.dart';
@@ -84,7 +85,7 @@ class LoginLogic extends StatelessWidget {
           } else if (user == 'Driver') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const DriverStartPage()),
+              MaterialPageRoute(builder: (context) => const EntryPoint()),
             );
           } else if (user == 'Customer') {
             Navigator.pushReplacement(

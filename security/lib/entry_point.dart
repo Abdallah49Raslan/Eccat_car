@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:security/page/home/components/animated_bar.dart';

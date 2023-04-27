@@ -71,6 +71,7 @@ class _darkmodeState extends State<HealthCareDriver> {
     double screenHeight = MediaQuery.of(context).size.height;
     final TestButtonREf = database.child("TestNow");
     return Scaffold(
+        backgroundColor: blackBG,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.white,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
+
 import '../../../core/rive_utils.dart';
 import '../models/rive_asset.dart';
 import 'info_card.dart';
