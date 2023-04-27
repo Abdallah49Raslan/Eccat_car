@@ -1,242 +1,148 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:security/core/space.dart';
-// import 'package:security/page/Authintication/Forget_Pass.dart';
-// import 'package:security/page/Authintication/sign_up.dart';
-// import '../../controler/LogInLogic.dart';
-// import '../../core/colors.dart';
-// import '../../core/text_style.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:security/controler/LogInLogic.dart';
+// import 'package:security/core/colors.dart';
+
+// import '../../widget/Dropdown_Menu.dart';
 // import '../../widget/main_button.dart';
 // import '../../widget/text_fild.dart';
 
-// class LoginPage extends StatefulWidget {
-//   const LoginPage({Key? key, String? errorMessage}) : super(key: key);
-
+// class UserRoleSelectionPage extends StatefulWidget {
 //   @override
-//   _LoginPageState createState() => _LoginPageState();
+//   _UserRoleSelectionPageState createState() => _UserRoleSelectionPageState();
 // }
 
-// class _LoginPageState extends State<LoginPage> {
-//   String _email = '';
-//   String _password = '';
+// class _UserRoleSelectionPageState extends State<UserRoleSelectionPage> {
+//   String? selectedOption;
+//   String? userID;
+//   String? driverLic;
+  
 
-//   TextEditingController userEmail = TextEditingController();
-//   TextEditingController userPass = TextEditingController();
-//   bool _isScure = true;
-//   bool rememberMe = false;
-
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-//   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-//   void initState() {
-//     super.initState();
-//     _getEmailAndPassword();
-//   }
-
-//   void _getEmailAndPassword() async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     bool rememberMe = prefs.getBool('rememberMe') ?? false;
-//     if (rememberMe) {
-//       setState(() {
-//         _email = prefs.getString('email') ?? '';
-//         _password = prefs.getString('password') ?? '';
-//         userEmail.text = _email;
-//         userPass.text = _password;
-//       });
-//     }
-//   }
+//   final personId = TextEditingController();
+//   final driverLicense = TextEditingController();
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       backgroundColor: blackBG,
+//       appBar: AppBar(
+//         title: Text('User Role Selection'),
+//       ),
 //       body: Padding(
-//         padding: const EdgeInsets.only(top: 50.0),
-//         child: SingleChildScrollView(
-//           child: Form(
-//             key: formKey,
-//             child: Column(
-//               children: [
-//                 //logo image
-//                 Container(
-//                   alignment: Alignment.center,
-//                   height: 150,
-//                   child: Image.asset(
-//                     'assets/image/logo.png',
-//                     width: 150,
-//                   ),
-//                 ),
-
-//                 //head of page
-//                 const SpaceVH(height: 50.0),
-//                 const Text(
-//                   'Welcome Back!',
-//                   style: headline1,
-//                 ),
-//                 //text hint of page
-//                 const SpaceVH(height: 10.0),
-//                 const Text(
-//                   'Please sign in to your account',
-//                   style: headline3,
-//                 ),
-//                 //userEmail
-//                 const SpaceVH(height: 20.0),
-//                 textField(
-//                   onChanged: (data) {
-//                     _email = data;
-//                   },
-//                   controller: userEmail,
-//                   keyboardType: TextInputType.emailAddress,
-//                   prefixIcon: const Icon(Icons.email),
-//                   hintTxt: 'Email Address',
-//                   validator: (value) {
-//                     if (value == null || value.isEmpty) {
-//                       return 'Please enter your Email';
-//                     }
-//                     return null;
-//                   },
-//                 ),
-
-//                 //Password
-//                 textField(
-//                   onChanged: (data) {
-//                     _password = data;
-//                   },
-//                   controller: userPass,
-//                   prefixIcon: IconButton(
-//                     onPressed: () {
-//                       setState(() {
-//                         _isScure = !_isScure;
-//                       });
-//                     },
-//                     icon: Icon(
-//                       _isScure ? Icons.visibility : Icons.visibility_off,
-//                     ),
-//                   ),
-//                   isObs: _isScure,
-//                   keyboardType: TextInputType.visiblePassword,
-//                   hintTxt: 'Password',
-//                   validator: (value) {
-//                     if (value == null || value.isEmpty) {
-//                       return 'Please enter your Password';
-//                     }
-//                     return null;
-//                   },
-//                 ),
-
-//                 //forgetPass
-//                 const SpaceVH(height: 10.0),
-//                 Align(
-//                   alignment: Alignment.centerRight,
-//                   child: Padding(
-//                     padding: const EdgeInsets.only(right: 20.0),
-//                     child: TextButton(
-//                       onPressed: () {
-//                         Navigator.push(
-//                             context,
-//                             MaterialPageRoute(
-//                                 builder: (builder) => const ForgetPassword()));
-//                       },
-//                       child: const Text(
-//                         'Forgot Password?',
-//                         style: headline3,
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-
-//                 //LogIn Button
-//                 const SpaceVH(height: 20.0),
-//                 Align(
-//                   alignment: Alignment.bottomCenter,
-//                   child: Column(
-//                     children: [
-//                       CheckboxListTile(
-//                         value: rememberMe,
-//                         onChanged: (value) async {
-//                           setState(() {
-//                             rememberMe = value!;
-//                           });
-//                           if (rememberMe) {
-//                             SharedPreferences prefs =
-//                                 await SharedPreferences.getInstance();
-//                             prefs.setString('email', _email);
-//                             prefs.setString('password', _password);
-//                           } else {
-//                             // If "Remember me" is not checked, clear the saved email and password
-//                             SharedPreferences prefs =
-//                                 await SharedPreferences.getInstance();
-//                             prefs.remove('email');
-//                             prefs.remove('password');
-//                           }
-//                         },
-//                         title: const Text(
-//                           'Remember me',
-//                           style: headline2,
-//                         ),
-//                         controlAffinity: ListTileControlAffinity.leading,
-//                       ),
-
-//                       Mainbutton(
-//                         onTap: () async {
-//                           if (formKey.currentState!.validate()) {
-//                             if (rememberMe) {
-//                               SharedPreferences prefs =
-//                                   await SharedPreferences.getInstance();
-//                               prefs.setString('email', _email);
-//                               prefs.setString('password', _password);
-//                             }
-//                             Navigator.push(
-//                               context,
-//                               MaterialPageRoute(
-//                                 builder: (context) => LoginLogic(
-//                                   email: _email,
-//                                   password: _password,
-//                                 ),
-//                               ),
-//                             );
-//                           }
-//                         },
-//                         text: 'Sign in',
-//                         btnColor: blueButton,
-//                       ),
-
-//                       //switch to signUp
-//                       const SpaceVH(height: 20.0),
-//                       TextButton(
-//                         onPressed: () {
-//                           Navigator.push(
-//                               context,
-//                               MaterialPageRoute(
-//                                   builder: (builder) => const SignUpPage()));
-//                         },
-//                         child: RichText(
-//                           text: TextSpan(children: [
-//                             TextSpan(
-//                               text: 'Don\' have an account? ',
-//                               style: headline.copyWith(
-//                                 fontSize: 14.0,
-//                               ),
-//                             ),
-//                             TextSpan(
-//                               text: ' Sign Up',
-//                               style: headlineDot.copyWith(
-//                                 fontSize: 14.0,
-//                               ),
-//                             ),
-//                           ]),
-//                         ),
-//                       )
-//                     ],
-//                   ),
-//                 )
-//               ],
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text(
+//               'Please select your role:',
+//               style: TextStyle(
+//                 fontSize: 20.0,
+//                 fontWeight: FontWeight.bold,
+//               ),
 //             ),
-//           ),
+//             SizedBox(height: 10.0),
+//             DropdownButtonFormField(
+//               value: selectedOption,
+//               items: ['Customer', 'Driver', 'Manager']
+//                   .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+//                   .toList(),
+//               onChanged: (newValue) {
+//                 setState(() {
+//                   selectedOption = newValue.toString();
+//                 });
+//               },
+//             ),
+//             if (selectedOption == 'Driver')
+//               Column(
+//                 children: [
+//                   SizedBox(height: 20.0),
+//                   TextField(
+//                     onChanged: (data) {
+//                       userID = data;
+//                     },
+//                     controller: personId,
+//                     decoration: InputDecoration(
+//                       hintText: 'Driver ID',
+//                       prefixIcon: Icon(Icons.credit_card_sharp),
+//                     ),
+//                   ),
+//                   SizedBox(height: 20.0),
+//                   TextField(
+//                     onChanged: (data) {
+//                       driverLic = data;
+//                     },
+//                     controller: driverLicense,
+//                     decoration: InputDecoration(
+//                       hintText: 'Driver License Number',
+//                       prefixIcon: Icon(Icons.credit_card),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             SizedBox(height: 20.0),
+//             Mainbutton(
+//               onTap: () { signInWithGoogle(context); },
+        
+          
+//               btnColor: blueButton,
+              
+//               text: 'Continue',
+              
+//             ),
+//           ],
 //         ),
 //       ),
 //     );
+//   }
+
+//   static Future<void> signInWithGoogle(BuildContext context) async {
+//     try {
+//       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+//       final GoogleSignInAuthentication googleAuth =
+//           await googleUser!.authentication;
+//       final OAuthCredential credential = GoogleAuthProvider.credential(
+//         accessToken: googleAuth.accessToken,
+//         idToken: googleAuth.idToken,
+//       );
+//       final UserCredential userCredential = await FirebaseAuth.instance
+//           .signInWithCredential(
+//               credential); // Check if the user has previously signed in
+//       final User? user = userCredential.user;
+//       final DocumentSnapshot? docSnapshot = await FirebaseFirestore.instance
+//           .collection('users')
+//           .doc(user!.uid)
+//           .get();
+
+//       if (!docSnapshot!.exists) {
+//         // Create a new user document in Firestore if the user is new
+//         await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+//           'name': user.displayName,
+//           'email': user.email,
+//           'photoUrl': user.photoURL,
+//           'role': user, // Add user role to Firestore document
+//         });
+//       }
+
+//       // Check if the user has already navigated to the next page before
+//       final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+//           .collection('completedEmails')
+//           .where('email', isEqualTo: user.email)
+//           .get();
+
+//       if (querySnapshot.docs.isEmpty) {
+//         // Add the user's email to the completedEmails collection if it hasn't been added before
+//         await FirebaseFirestore.instance
+//             .collection('completedEmails')
+//             .add({'email': user.email});
+
+//         // Navigate to the next page if the email is new to the completedEmails collection
+//         // ignore: use_build_context_synchronously
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(builder: (context) => LoginLogic()),
+//         );
+//       }
+//     }
 //   }
 // }

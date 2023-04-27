@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../core/text_style.dart';
+import '../../../firebaseService.dart';
 import '../../Authintication/sign_up.dart';
 import 'sign_in_form.dart';
 
@@ -90,18 +90,22 @@ Future<Object?> customSigninDialog(BuildContext context,
                     ),
                     IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () {
+                        FirebaseService.signInWithGoogle(context);
+                      },
                       icon: SvgPicture.asset(
-                        "assets/icons/apple_box.svg",
+                        "assets/icons/google_box.svg",
                         height: 64,
                         width: 64,
                       ),
                     ),
                     IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () {
+                        FirebaseService.signInWithApple();
+                      },
                       icon: SvgPicture.asset(
-                        "assets/icons/google_box.svg",
+                        "assets/icons/apple_box.svg",
                         height: 64,
                         width: 64,
                       ),
@@ -110,7 +114,6 @@ Future<Object?> customSigninDialog(BuildContext context,
                 )
               ],
             ),
-            
           ),
         ),
       ),

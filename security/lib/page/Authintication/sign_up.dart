@@ -157,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       },
                       controller: personId,
                       prefixIcon: const Icon(Icons.credit_card_sharp),
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       hintTxt: 'Driver ID',
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -172,7 +172,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       },
                       controller: driverLicense,
                       prefixIcon: const Icon(Icons.credit_card),
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       hintTxt: 'Driver License Number',
                       validator: (value) {
                         if (value == null || value.isEmpty) {

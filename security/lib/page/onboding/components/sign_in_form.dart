@@ -5,11 +5,11 @@ import 'package:rive/rive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../controler/LogInLogic.dart';
 import '../../../core/colors.dart';
+import '../../../core/rive_utils.dart';
 import '../../../core/space.dart';
 import '../../../core/text_style.dart';
 import '../../../widget/text_fild.dart';
 import '../../Authintication/Forget_Pass.dart';
-import '../utils/rive_utils.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({

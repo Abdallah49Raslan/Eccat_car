@@ -56,6 +56,9 @@ dependencies:
   local_auth: ^2.1.6
   shared_preferences: ^2.1.0
   rive: ^0.9.1
+  sign_in_with_apple: ^4.3.0
+  flutter_polyline_points: ^1.0.0
+  flutter_plugin_android_lifecycle: ^2.0.11
   
   
   

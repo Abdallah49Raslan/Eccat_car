@@ -1,11 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/Authintication/login_page.dart';
-import '../page/Customer/Custom_start.dart';
-import '../page/Driver/Driver_start.dart';
-import '../page/Owner/Owner_start.dart';
 import '../page/onboding/onboding_screen.dart';
+import '../page/started_pages/Customer/Custom_start.dart';
+import '../page/started_pages/Driver/Driver_start.dart';
+import '../page/started_pages/Owner/Owner_start.dart';
 
 class LoginLogic extends StatelessWidget {
   final String? email;
@@ -25,12 +27,12 @@ class LoginLogic extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Show a loading widget while waiting for the login process to finish
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
           // Show a login form or other content if the login process has not started yet
-          return OnboardingScreen();
+          return const OnboardingScreen();
         }
       },
     );
@@ -49,9 +51,9 @@ class LoginLogic extends StatelessWidget {
           SnackBar(
             content: Row(
               children: [
-                Icon(Icons.error_outline),
-                SizedBox(width: 10),
-                Text('Email or password is null'),
+                const Icon(Icons.error_outline),
+                const SizedBox(width: 10),
+                const Text('Email or password is null'),
               ],
             ),
             behavior: SnackBarBehavior.floating,
@@ -74,19 +76,20 @@ class LoginLogic extends StatelessWidget {
 
           // Navigate to the appropriate start page based on user's role
           if (user == 'Owner') {
+            
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => OwnerStartPage()),
+              MaterialPageRoute(builder: (context) => const OwnerStartPage()),
             );
           } else if (user == 'Driver') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => DriverStartPage()),
+              MaterialPageRoute(builder: (context) => const DriverStartPage()),
             );
           } else if (user == 'Customer') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => CustomerStartPage()),
+              MaterialPageRoute(builder: (context) => const CustomerStartPage()),
             );
           } else {
             // If role is not recognized, show an error message and return false
@@ -94,9 +97,9 @@ class LoginLogic extends StatelessWidget {
               SnackBar(
                 content: Row(
                   children: [
-                    Icon(Icons.error_outline),
-                    SizedBox(width: 10),
-                    Text('User role not recognized'),
+                    const Icon(Icons.error_outline),
+                    const SizedBox(width: 10),
+                    const Text('User role not recognized'),
                   ],
                 ),
                 behavior: SnackBarBehavior.floating,
@@ -110,9 +113,9 @@ class LoginLogic extends StatelessWidget {
             SnackBar(
               content: Row(
                 children: [
-                  Icon(Icons.error_outline),
-                  SizedBox(width: 10),
-                  Text('User document not found in Cloud Firestore'),
+                  const Icon(Icons.error_outline),
+                  const SizedBox(width: 10),
+                  const Text('User document not found in Cloud Firestore'),
                 ],
               ),
               behavior: SnackBarBehavior.floating,
@@ -146,8 +149,8 @@ class LoginLogic extends StatelessWidget {
         SnackBar(
           content: Row(
             children: [
-              Icon(Icons.error_outline),
-              SizedBox(width: 10),
+              const Icon(Icons.error_outline),
+              const SizedBox(width: 10),
               Text(errorMessage),
             ],
           ),
@@ -164,8 +167,8 @@ class LoginLogic extends StatelessWidget {
         SnackBar(
           content: Row(
             children: [
-              Icon(Icons.error_outline),
-              SizedBox(width: 10),
+              const Icon(Icons.error_outline),
+              const SizedBox(width: 10),
               Text(errorMessage),
             ],
           ),

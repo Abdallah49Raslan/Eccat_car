@@ -6,6 +6,7 @@ import 'package:security/page/onboding/onboding_screen.dart';
 import 'package:security/page/spalsh_Page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'entry_point.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: themeData(),
-      home: const OnboardingScreen(),
+      home: const EntryPoint(),
     );
   }
 }
