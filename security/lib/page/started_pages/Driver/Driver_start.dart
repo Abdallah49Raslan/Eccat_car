@@ -3,8 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:security/core/text_style.dart';
 import 'package:security/page/Iot/mainpage.dart';
 
+import '../../../core/colors.dart';
+import '../../../core/space.dart';
 import '../../Health Care/darkmode.dart';
 
 class DriverStartPage extends StatefulWidget {
@@ -98,22 +101,18 @@ class _DriverStartPageState extends State<DriverStartPage> {
                           color: Colors.black87,
                           borderRadius: BorderRadius.circular(20)),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-
-                        // mainAxisSize: MainAxisSize.min,
                         children: [
+                          const SpaceVH(height: 30.0),
                           Expanded(
                             child: Container(
                               width: 50,
                               decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                      image: NetworkImage(
-                                          'https://www.seekpng.com/png/full/14-144347_location-png-white-vector-free-library-location-icon.png'))),
+                                      image: AssetImage(
+                                          'assets/icons/location.png'))),
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
+                          const SpaceVH(height: 10.0),
                           Expanded(
                               child: Container(
                             child: const Text(
@@ -157,22 +156,19 @@ class _DriverStartPageState extends State<DriverStartPage> {
                         margin: const EdgeInsets.only(left: 20, top: 30),
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
-                            color: Colors.black87,
+                            color: backgroundColorDark,
                             borderRadius: BorderRadius.circular(20)),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-
-                          // mainAxisSize: MainAxisSize.min,
                           children: [
+                            const SpaceVH(height: 30.0),
                             Expanded(
                               child: Container(
-                                //  margin: EdgeInsets.only(top: 20),
                                 width: 130,
                                 height: 130,
                                 decoration: const BoxDecoration(
                                     image: DecorationImage(
-                                        image: NetworkImage(
-                                            'https://www.citypng.com/public/uploads/preview/supercar-sport-car-white-icon-hd-png-11637225474lauqmiukew.png'))),
+                                        image: AssetImage(
+                                            'assets/icons/iot.png'))),
                               ),
                             ),
                             const SizedBox(
@@ -212,33 +208,26 @@ class _DriverStartPageState extends State<DriverStartPage> {
                       margin: const EdgeInsets.only(left: 20),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
-                          color: Colors.black87,
+                          color: backgroundColorDark,
                           borderRadius: BorderRadius.circular(20)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          const SpaceVH(height: 30.0),
                           Expanded(
                             child: Container(
-                              // margin: EdgeInsets.only(top: 20),
-                              width: 50,
-                              // height: 50,
                               decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                      image: NetworkImage(
-                                          'https://www.seekpng.com/png/full/14-144347_location-png-white-vector-free-library-location-icon.png'))),
+                                      image:
+                                          AssetImage('assets/icons/AI3.png'))),
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
+                          const SpaceVH(height: 10.0),
                           Expanded(
                               child: Container(
                             child: const Text(
                               'AI ',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
+                              style: headline2,
                             ),
                           ))
                         ],
@@ -274,18 +263,16 @@ class _DriverStartPageState extends State<DriverStartPage> {
                             borderRadius: BorderRadius.circular(20)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-
-                          // mainAxisSize: MainAxisSize.min,
                           children: [
+                            const SpaceVH(height: 30.0),
                             Expanded(
                               child: Container(
-                                // margin: EdgeInsets.only(top: 20),
                                 width: 70,
                                 height: 70,
                                 decoration: const BoxDecoration(
                                     image: DecorationImage(
-                                        image: NetworkImage(
-                                            'https://www.nashvillecares.org/wp-content/uploads/2021/11/ICON-HEART.png'))),
+                                        image: AssetImage(
+                                            'assets/icons/health.png'))),
                               ),
                             ),
                             const SizedBox(

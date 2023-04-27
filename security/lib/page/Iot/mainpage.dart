@@ -6,6 +6,8 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+import '../../core/colors.dart';
+
 class IoTPage extends StatefulWidget {
   const IoTPage({super.key});
 
@@ -77,8 +79,14 @@ class _IoTPageState extends State<IoTPage> {
     return Scaffold(
       backgroundColor: const Color(0xff2b2b2b),
       appBar: AppBar(
-        backgroundColor: const Color(0xff2b2b2b),
-        actions: [],
+        centerTitle: true,
+        backgroundColor: backgroundColorDark,
+        title: Text("IoT",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            )),
       ),
       drawer: const Drawer(),
       body: Container(

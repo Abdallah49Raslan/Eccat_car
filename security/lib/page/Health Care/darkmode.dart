@@ -74,7 +74,7 @@ class _darkmodeState extends State<HealthCareDriver> {
         backgroundColor: blackBG,
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: backgroundColorDark,
           title: Text("HealthCare",
               style: TextStyle(
                 fontSize: 30,

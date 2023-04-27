@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-
 import '../../../core/rive_utils.dart';
 import '../models/rive_asset.dart';
 import 'info_card.dart';
@@ -30,8 +29,8 @@ class _SideMenuState extends State<SideMenu> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const InfoCard(
-                name: "Abu Anwar",
-                profession: "YouTuber",
+                name: "abdallah osama",
+                profession: "Driver",
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 24, top: 32, bottom: 16),
