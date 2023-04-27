@@ -69,8 +69,6 @@ class _EntryPointState extends State<EntryPoint>
       body: Stack(
         // It's time to add the SideMenu
         children: [
-          // It shows nothing
-          // because now it's under the HomeScreen
           AnimatedPositioned(
             duration: const Duration(milliseconds: 200),
             curve: Curves.fastOutSlowIn,

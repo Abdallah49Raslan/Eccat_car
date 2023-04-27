@@ -67,7 +67,7 @@ Future<Object?> customSigninDialog(BuildContext context,
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 24),
                   child: Text(
-                    "Sign up with Email, Apple or Google",
+                    "Sign up with Email or Google",
                     style: TextStyle(color: Colors.black54),
                   ),
                 ),
@@ -95,17 +95,6 @@ Future<Object?> customSigninDialog(BuildContext context,
                       },
                       icon: SvgPicture.asset(
                         "assets/icons/google_box.svg",
-                        height: 64,
-                        width: 64,
-                      ),
-                    ),
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        FirebaseService.signInWithApple();
-                      },
-                      icon: SvgPicture.asset(
-                        "assets/icons/apple_box.svg",
                         height: 64,
                         width: 64,
                       ),
