@@ -9,6 +9,7 @@ import '../../widget/Dropdown_Menu.dart';
 import '../../widget/main_button.dart';
 import '../../widget/text_fild.dart';
 import 'Authintication/login_page.dart';
+import 'onboding/onboding_screen.dart';
 
 class UserDetailPage extends StatefulWidget {
   const UserDetailPage({Key? key}) : super(key: key);
@@ -198,7 +199,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
+                          builder: (context) => const OnboardingScreen()),
                     );
                   },
                   text: 'Logout',

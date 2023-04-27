@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:security/controler/test.dart';
 import 'package:security/page/Authintication/login_page.dart';
-import '../../firebaseService.dart';
+import '../../../firebaseService.dart';
+import '../../onboding/onboding_screen.dart';
 import '../Customer/location.dart';
+
 
 class CustomerStartPage extends StatelessWidget {
   const CustomerStartPage({Key? key}) : super(key: key);
@@ -60,7 +62,7 @@ class CustomerStartPage extends StatelessWidget {
                 FirebaseAuth.instance.signOut();
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                  MaterialPageRoute(builder: (context) => const OnboardingScreen()),
                 );
               },
               child: const Text('Log out'),

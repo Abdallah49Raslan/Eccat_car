@@ -1,13 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/Authintication/login_page.dart';
-import '../page/Customer/Custom_start.dart';
-import '../page/Driver/Driver_start.dart';
-import '../page/Owner/Owner_start.dart';
+import '../page/onboding/onboding_screen.dart';
+import '../page/started_pages/Customer/Custom_start.dart';
+import '../page/started_pages/Driver/Driver_start.dart';
+import '../page/started_pages/Owner/Owner_start.dart';
 
 class LoginLogic extends StatelessWidget {
-
   final String? email;
   final String? password;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -25,12 +27,12 @@ class LoginLogic extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Show a loading widget while waiting for the login process to finish
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
           // Show a login form or other content if the login process has not started yet
-          return LoginPage();
+          return const OnboardingScreen();
         }
       },
     );
@@ -42,18 +44,16 @@ class LoginLogic extends StatelessWidget {
 
       if (email != null && password != null) {
         // Sign in with email and password
-        userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: email!,
-            password: password!
-        );
+        userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email!, password: password!);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Row(
               children: [
-                Icon(Icons.error_outline),
-                SizedBox(width: 10),
-                Text('Email or password is null'),
+                const Icon(Icons.error_outline),
+                const SizedBox(width: 10),
+                const Text('Email or password is null'),
               ],
             ),
             behavior: SnackBarBehavior.floating,
@@ -66,29 +66,30 @@ class LoginLogic extends StatelessWidget {
         // Check user's role in Cloud Firestore
         String? user = null; // Declare the role variable before using it
         DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(userCredential.user!.uid)
-            .get();
+            await FirebaseFirestore.instance
+                .collection('users')
+                .doc(userCredential.user!.uid)
+                .get();
 
         if (documentSnapshot != null && documentSnapshot.exists) {
           user = documentSnapshot.data()!['user'];
 
           // Navigate to the appropriate start page based on user's role
           if (user == 'Owner') {
+            
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => OwnerStartPage()),
+              MaterialPageRoute(builder: (context) => const OwnerStartPage()),
             );
           } else if (user == 'Driver') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => DriverStartPage()),
+              MaterialPageRoute(builder: (context) => const DriverStartPage()),
             );
           } else if (user == 'Customer') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => CustomerStartPage()),
+              MaterialPageRoute(builder: (context) => const CustomerStartPage()),
             );
           } else {
             // If role is not recognized, show an error message and return false
@@ -96,9 +97,9 @@ class LoginLogic extends StatelessWidget {
               SnackBar(
                 content: Row(
                   children: [
-                    Icon(Icons.error_outline),
-                    SizedBox(width: 10),
-                    Text('User role not recognized'),
+                    const Icon(Icons.error_outline),
+                    const SizedBox(width: 10),
+                    const Text('User role not recognized'),
                   ],
                 ),
                 behavior: SnackBarBehavior.floating,
@@ -112,9 +113,9 @@ class LoginLogic extends StatelessWidget {
             SnackBar(
               content: Row(
                 children: [
-                  Icon(Icons.error_outline),
-                  SizedBox(width: 10),
-                  Text('User document not found in Cloud Firestore'),
+                  const Icon(Icons.error_outline),
+                  const SizedBox(width: 10),
+                  const Text('User document not found in Cloud Firestore'),
                 ],
               ),
               behavior: SnackBarBehavior.floating,
@@ -125,7 +126,6 @@ class LoginLogic extends StatelessWidget {
 
         return true;
       } else {
-
         return false;
       }
     } on FirebaseAuthException catch (ex) {
@@ -136,10 +136,10 @@ class LoginLogic extends StatelessWidget {
         errorMessage = 'Incorrect password';
       } else if (ex.code == 'network-request-failed') {
         errorMessage =
-        'Network error. Please check your connection and try again.';
+            'Network error. Please check your connection and try again.';
       } else if (ex.code == 'operation-not-allowed') {
         errorMessage =
-        'Signing in with email and password is not enabled. Please contact the app administrator.';
+            'Signing in with email and password is not enabled. Please contact the app administrator.';
       } else {
         errorMessage = 'An error occurred. Please try again later.';
         debugPrint(ex.toString()); // log the error for debugging purposes
@@ -149,8 +149,8 @@ class LoginLogic extends StatelessWidget {
         SnackBar(
           content: Row(
             children: [
-              Icon(Icons.error_outline),
-              SizedBox(width: 10),
+              const Icon(Icons.error_outline),
+              const SizedBox(width: 10),
               Text(errorMessage),
             ],
           ),
@@ -167,8 +167,8 @@ class LoginLogic extends StatelessWidget {
         SnackBar(
           content: Row(
             children: [
-              Icon(Icons.error_outline),
-              SizedBox(width: 10),
+              const Icon(Icons.error_outline),
+              const SizedBox(width: 10),
               Text(errorMessage),
             ],
           ),

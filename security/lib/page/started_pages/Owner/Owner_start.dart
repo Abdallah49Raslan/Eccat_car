@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../Authintication/login_page.dart';
-
+import '../../onboding/onboding_screen.dart';
 
 class OwnerStartPage extends StatelessWidget {
   const OwnerStartPage
@@ -41,7 +40,7 @@ class OwnerStartPage extends StatelessWidget {
                 FirebaseAuth.instance.signOut();
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                  MaterialPageRoute(builder: (context) => const OnboardingScreen()),
                 );
               },
               child: const Text('Log out'),
