@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/Authintication/sign_up.dart';
-import '../entry_customer.dart';
-import '../entry_point.dart';
+import '../page/started_pages/Customer/entry_customer.dart';
+import '../page/started_pages/Driver/entry_Driver.dart';
 import '../page/started_pages/Customer/Custom_start.dart';
 
 

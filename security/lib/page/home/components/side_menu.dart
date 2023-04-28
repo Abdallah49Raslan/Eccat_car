@@ -8,7 +8,7 @@ import '../../../core/colors.dart';
 import '../../../core/rive_utils.dart';
 import '../../../core/space.dart';
 import '../../../widget/main_button.dart';
-import '../../onboding/onboding_screen.dart';
+import '../../spalsh_Page/onboding_screen.dart';
 import '../models/rive_asset.dart';
 import 'info_card.dart';
 import 'side_menu_tile.dart';

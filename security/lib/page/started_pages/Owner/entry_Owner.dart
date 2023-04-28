@@ -7,8 +7,8 @@ import 'package:security/page/home/models/menu_btn.dart';
 import 'package:security/page/home/models/rive_asset.dart';
 import 'package:security/page/started_pages/Driver/driverstart.dart';
 import 'package:security/page/started_pages/Owner/Owner_start.dart';
-import 'core/colors.dart';
-import 'core/rive_utils.dart';
+import '../../../core/colors.dart';
+import '../../../core/rive_utils.dart';
 
 // We are done with our 5th and last episode
 // Thank you so much for watching entire serise
