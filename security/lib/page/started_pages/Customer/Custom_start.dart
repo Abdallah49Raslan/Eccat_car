@@ -135,12 +135,14 @@ class _CustomerStartPageState extends State<CustomerStartPage> {
                   height: 30,
                 ),
 
-                //driver health
+                //Customer health
+                const SpaceVH(height: 30.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // SizedBox(height: 20,),
                     Container(
+                      height: 60,
                       margin:
                           const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 10),
                     ),
@@ -158,7 +160,7 @@ class _CustomerStartPageState extends State<CustomerStartPage> {
                         margin: const EdgeInsets.only(left: 20),
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
-                            color: Colors.black87,
+                            color: backgroundColorDark,
                             borderRadius: BorderRadius.circular(20)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -180,7 +182,7 @@ class _CustomerStartPageState extends State<CustomerStartPage> {
                             Expanded(
                                 child: Container(
                               child: const Text(
-                                'driver health',
+                                'Check health',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,

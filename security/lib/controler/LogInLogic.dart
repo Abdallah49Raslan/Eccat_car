@@ -91,7 +91,7 @@ class LoginLogic extends StatelessWidget {
           } else if (user == 'Customer') {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const entry_customer()),
+              MaterialPageRoute(builder: (context) => const EntryCustomer()),
             );
           } else {
             // If role is not recognized, show an error message and return false

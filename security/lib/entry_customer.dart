@@ -11,14 +11,14 @@ import 'core/colors.dart';
 import 'core/rive_utils.dart';
 
 
-class entry_customer extends StatefulWidget {
-  const entry_customer({super.key});
+class EntryCustomer extends StatefulWidget {
+  const EntryCustomer({super.key});
 
   @override
-  State<entry_customer> createState() => _entry_customerState();
+  State<EntryCustomer> createState() => _EntryCustomerState();
 }
 
-class _entry_customerState extends State<entry_customer>
+class _EntryCustomerState extends State<EntryCustomer>
     with SingleTickerProviderStateMixin {
   RiveAsset selectedBottomNav = bottomNavs.first;
 

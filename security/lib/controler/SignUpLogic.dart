@@ -43,7 +43,7 @@ class SignUpLogic extends StatelessWidget {
           if (role == 'Driver') {
             return const EntryDriver();
           } else if (role == 'Customer') {
-            return const entry_customer();
+            return const EntryCustomer();
           }
         } else if (snapshot.hasError) {
           // Handle any errors that may occur during sign-up
