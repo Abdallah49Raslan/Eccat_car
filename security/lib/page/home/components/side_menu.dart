@@ -4,7 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:security/core/text_style.dart';
+import '../../../core/colors.dart';
 import '../../../core/rive_utils.dart';
+import '../../../core/space.dart';
+import '../../../widget/main_button.dart';
+import '../../spalsh_Page/onboding_screen.dart';
 import '../models/rive_asset.dart';
 import 'info_card.dart';
 import 'side_menu_tile.dart';
@@ -126,6 +130,19 @@ class _SideMenuState extends State<SideMenu> {
                   },
                   isActive: selectedMenu == menu,
                 ),
+              ),
+              const SpaceVH(height: 50.0),
+              Mainbutton(
+                onTap: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const OnboardingScreen()),
+                  );
+                },
+                text: 'Logout',
+                btnColor: blueButton,
               ),
             ],
           ),

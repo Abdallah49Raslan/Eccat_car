@@ -5,23 +5,20 @@ import 'package:security/page/home/components/animated_bar.dart';
 import 'package:security/page/home/components/side_menu.dart';
 import 'package:security/page/home/models/menu_btn.dart';
 import 'package:security/page/home/models/rive_asset.dart';
-import 'package:security/page/started_pages/Driver/Driver_start.dart';
+import 'package:security/page/started_pages/Customer/Custom_start.dart';
 
-import 'core/colors.dart';
-import 'core/rive_utils.dart';
+import '../../../core/colors.dart';
+import '../../../core/rive_utils.dart';
 
-// We are done with our 5th and last episode
-// Thank you so much for watching entire serise
-// Bye
 
-class EntryPoint extends StatefulWidget {
-  const EntryPoint({super.key});
+class EntryCustomer extends StatefulWidget {
+  const EntryCustomer({super.key});
 
   @override
-  State<EntryPoint> createState() => _EntryPointState();
+  State<EntryCustomer> createState() => _EntryCustomerState();
 }
 
-class _EntryPointState extends State<EntryPoint>
+class _EntryCustomerState extends State<EntryCustomer>
     with SingleTickerProviderStateMixin {
   RiveAsset selectedBottomNav = bottomNavs.first;
 
@@ -88,7 +85,7 @@ class _EntryPointState extends State<EntryPoint>
                 scale: scalAnimation.value,
                 child: const ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: DriverStartPage(),
+                  child: CustomerStartPage(),
                 ),
               ),
             ),

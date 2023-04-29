@@ -8,7 +8,7 @@ import 'package:security/widget/main_button.dart';
 import 'package:security/widget/text_fild.dart';
 import 'package:security/core/space.dart';
 
-import '../onboding/onboding_screen.dart';
+import '../spalsh_Page/onboding_screen.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);

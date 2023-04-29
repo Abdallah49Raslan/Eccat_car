@@ -197,8 +197,6 @@ class _SignUpPageState extends State<SignUpPage> {
                             name: Name!,
                             phone: phone!,
                             role: selectedOption!,
-                            driverLicense: DriverLic!,
-                            personId: UserID!,
                           ),
                         ),
                       );
