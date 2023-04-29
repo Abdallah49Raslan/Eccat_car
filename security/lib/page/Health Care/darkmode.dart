@@ -28,11 +28,11 @@ class _darkmodeState extends State<HealthCareDriver> {
 
   void activateListeners() {
     //Driver values
-    outputstream = database.child('output').onValue.listen((event) {
-      final num? temp = event.snapshot.child('temp').value as num;
-      final num? heartRate = event.snapshot.child('heartRate').value as num;
-      final num? oximeter = event.snapshot.child('oximeter').value as num;
-      final Object? alcohol = event.snapshot.child('alcohol').value;
+    outputstream = database.child('HealthDatabase').onValue.listen((event) {
+      final num? temp = event.snapshot.child('Drivertemperature').value as num;
+      final num? heartRate = event.snapshot.child('DriverheartRate').value as num;
+      final num? oximeter = event.snapshot.child('Driveroximeter').value as num;
+      final Object? alcohol = event.snapshot.child('Driveralcohol').value;
       //Passenger1 values
       final num? P1heartRate =
           event.snapshot.child('passenger1heartRate').value as num;
