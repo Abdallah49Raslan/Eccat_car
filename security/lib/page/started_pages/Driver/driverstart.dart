@@ -95,38 +95,43 @@ class _DriverStartPageState extends State<DriverStartPage> {
                     ),
 
                     //location
-                    Container(
-                      height: 170,
-                      width: 170,
-                      margin: const EdgeInsets.only(left: 20),
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                          color: Colors.black87,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        children: [
-                          const SpaceVH(height: 30.0),
-                          Expanded(
-                            child: Container(
-                              width: 50,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/icons/location.png'))),
-                            ),
-                          ),
-                          const SpaceVH(height: 10.0),
-                          Expanded(
+                    InkWell(
+                      onTap: () {
+                        
+                      },
+                      child: Container(
+                        height: 170,
+                        width: 170,
+                        margin: const EdgeInsets.only(left: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                            color: Colors.black87,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Column(
+                          children: [
+                            const SpaceVH(height: 30.0),
+                            Expanded(
                               child: Container(
-                            child: const Text(
-                              'current location',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
+                                width: 50,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/icons/location.png'))),
+                              ),
                             ),
-                          ))
-                        ],
+                            const SpaceVH(height: 10.0),
+                            Expanded(
+                                child: Container(
+                              child: const Text(
+                                'current location',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ))
+                          ],
+                        ),
                       ),
                     )
                   ],
@@ -205,35 +210,41 @@ class _DriverStartPageState extends State<DriverStartPage> {
                     ),
 
                     //AI
-                    Container(
-                      height: 170,
-                      width: 170,
-                      margin: const EdgeInsets.only(left: 20),
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                          color: backgroundColorDark,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SpaceVH(height: 30.0),
-                          Expanded(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage('assets/icons/AI3.png'))),
-                            ),
-                          ),
-                          const SpaceVH(height: 10.0),
-                          Expanded(
+                    InkWell(
+                      onTap: () {
+                        
+
+                      },
+                      child: Container(
+                        height: 170,
+                        width: 170,
+                        margin: const EdgeInsets.only(left: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                            color: backgroundColorDark,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SpaceVH(height: 30.0),
+                            Expanded(
                               child: Container(
-                            child: const Text(
-                              'AI ',
-                              style: headline2,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image:
+                                            AssetImage('assets/icons/AI3.png'))),
+                              ),
                             ),
-                          ))
-                        ],
+                            const SpaceVH(height: 10.0),
+                            Expanded(
+                                child: Container(
+                              child: const Text(
+                                'AI ',
+                                style: headline2,
+                              ),
+                            ))
+                          ],
+                        ),
                       ),
                     )
                   ],
