@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:security/core/text_style.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
-
-import '../../../../core/colors.dart';
-import '../../../../core/space.dart';
+import 'package:security/core/text_style.dart';
+import 'package:security/core/colors.dart';
+import 'package:security/core/space.dart';
 import 'dart:async';
-
 import '../../Health Care/darkmode.dart';
 import '../../Iot/iot.dart';
 
@@ -57,20 +54,16 @@ class _DriverStartPageState extends State<DriverStartPage> {
               //car icon in above of page
               Container(
                 width: double.infinity,
-                height: 370,
+                height: 360,
                 decoration: const BoxDecoration(
-                    color: Colors.black87,
+                    color: whiteText,
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(50),
+                        bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(50))),
                 child: Container(
-                  margin: const EdgeInsets.only(top: 60),
-                  height: 100,
-                  width: 100,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(
-                            'https://ezgo.txtsv.com/sites/default/files/styles/compress/public/_images/vehicle-thumbnails/EZGO_L6_Builder_v10_WHITE_0.png?itok=9rWD1cpk')),
+                        image: AssetImage('assets/image/222.png')),
                   ),
                 ),
               ),
@@ -79,26 +72,23 @@ class _DriverStartPageState extends State<DriverStartPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
                     Container(
                       margin: const EdgeInsetsDirectional.only(
-                          top: 10, start: 20, bottom: 20),
+                          top: 30, start: 20, bottom: 20),
                       //width: double.infinity,
 
                       child: const Text(
                         'specifications',
                         style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w900),
+                            color: redhomeColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w900),
                       ),
                     ),
 
                     //location
                     InkWell(
-                      onTap: () {
-                        
-                      },
+                      onTap: () {},
                       child: Container(
                         height: 170,
                         width: 170,
@@ -211,10 +201,7 @@ class _DriverStartPageState extends State<DriverStartPage> {
 
                     //AI
                     InkWell(
-                      onTap: () {
-                        
-
-                      },
+                      onTap: () {},
                       child: Container(
                         height: 170,
                         width: 170,
@@ -231,8 +218,8 @@ class _DriverStartPageState extends State<DriverStartPage> {
                               child: Container(
                                 decoration: const BoxDecoration(
                                     image: DecorationImage(
-                                        image:
-                                            AssetImage('assets/icons/AI3.png'))),
+                                        image: AssetImage(
+                                            'assets/icons/AI3.png'))),
                               ),
                             ),
                             const SpaceVH(height: 10.0),

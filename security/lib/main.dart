@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/spalsh_Page/onboding_screen.dart';
 import 'package:security/page/started_pages/Driver/driverstart.dart';
+import 'package:security/page/started_pages/Driver/entry_Driver.dart';
 import 'firebase_options.dart';
 import 'lists/chat.dart';
 
@@ -28,13 +29,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme:
-       themeData(),
-      home: DriverStartPage()
-      // const OnboardingScreen(),
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      final screenWidth = constraints.maxWidth;
+      final screenHeight = constraints.maxHeight;
+      return MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: themeData(),
+        home: const OnboardingScreen(),
+        builder: (context, child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              size: Size(screenWidth, screenHeight),
+            ),
+            child: child!,
+          );
+        },
+      );
+    });
   }
 }

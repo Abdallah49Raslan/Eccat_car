@@ -10,6 +10,7 @@ import '../../core/space.dart';
 import '../../widget/Dropdown_Menu.dart';
 import '../../widget/main_button.dart';
 import '../../widget/text_fild.dart';
+import '../spalsh_Page/onboding_screen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -212,7 +213,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SpaceVH(height: 20.0),
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                     Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const OnboardingScreen()));
                   },
                   child: RichText(
                     text: const TextSpan(children: [

@@ -8,6 +8,7 @@ import '../../../core/colors.dart';
 import '../../../core/rive_utils.dart';
 import '../../../core/space.dart';
 import '../../../widget/main_button.dart';
+import '../../User_Profile.dart';
 import '../../spalsh_Page/onboding_screen.dart';
 import '../models/rive_asset.dart';
 import 'info_card.dart';
@@ -49,11 +50,42 @@ class _SideMenuState extends State<SideMenu> {
                   final userName = userData?['name'] as String?;
                   return Row(
                     children: [
-                      const CircleAvatar(
-                        backgroundColor: Colors.white24,
-                        child: Icon(
-                          CupertinoIcons.person,
-                          color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          // Do something when the avatar is tapped
+                        },
+                        child: StreamBuilder<DocumentSnapshot>(
+                          stream: FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(user!.uid)
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
+                              return CircleAvatar(
+                                backgroundColor: Colors.white24,
+                                child: Icon(
+                                  CupertinoIcons.person,
+                                  color: Colors.white,
+                                ),
+                              );
+                            }
+                            final userData =
+                                snapshot.data!.data() as Map<String, dynamic>?;
+                            final profilePicUrl =
+                                userData?['profilePicUrl'] as String?;
+                            return CircleAvatar(
+                              backgroundImage: profilePicUrl != null
+                                  ? NetworkImage(profilePicUrl)
+                                  : null,
+                              backgroundColor: Colors.white24,
+                              child: profilePicUrl == null
+                                  ? Icon(
+                                      CupertinoIcons.person,
+                                      color: Colors.white,
+                                    )
+                                  : null,
+                            );
+                          },
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -131,7 +163,7 @@ class _SideMenuState extends State<SideMenu> {
                   isActive: selectedMenu == menu,
                 ),
               ),
-              const SpaceVH(height: 50.0),
+              const SpaceVH(height: 30.0),
               Mainbutton(
                 onTap: () {
                   FirebaseAuth.instance.signOut();

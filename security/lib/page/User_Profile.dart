@@ -185,6 +185,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                         text: 'edit',
                         style: headlineDot.copyWith(
                           fontSize: 14.0,
+                          color: backgroundColorLight,
                         ),
                       ),
                     ]),

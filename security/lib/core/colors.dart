@@ -23,6 +23,8 @@ const Color appBarcolor = Color(0xff2b2b2b);
 const Color primaryColor = Color.fromARGB(255, 60, 177, 95);
 const Color redColor = Color(0XFFFF5368);
 
+const Color redhomeColor = Color.fromRGBO(142, 35, 35, 1.0);
+
 const List<Color> gradient = [
   Color.fromRGBO(24, 26, 32, 1),
   Color.fromRGBO(24, 26, 32, 0.9),
