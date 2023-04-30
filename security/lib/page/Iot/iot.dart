@@ -35,7 +35,7 @@ class _IoTPageState extends State<IoTPage> {
     var m = await FirebaseMessaging.instance.getInitialMessage();
   }
 
-  sebelisteners() {
+    sebelisteners() {
     var sb = refdb.child('seatbelt/2').onValue.listen((event) {
       dynamic val = event.snapshot.value;
       setState(() {
@@ -61,58 +61,15 @@ class _IoTPageState extends State<IoTPage> {
       });
     });
   }
-
-  // batteryliseneers() {
-  //   refdb.child('battery/batt').onValue.listen((event) {
-  //     dynamic b = event.snapshot.value;
-  //     setState(() {
-  //       batt_display ='$b';
-  //     });
-  //   });
-  // }
-
-  @override
+ @override
   void initState() {
-    // sc = StreamController();
-    // getdata();
-
-    //  batteryliseneers();
+   
     lightliseners();
     breaklisteners();
     sebelisteners();
 
     super.initState();
   }
-
-  // @override
-  // void initState() {
-  //   sc = StreamController();
-  //   Timer.periodic(Duration(seconds: 1), (_) {});
-
-  //   cdm.getToken().then((value) {
-  //     print('======================');
-
-  //     print(value);
-
-  //     print('======================');
-  //   });
-
-  //   FirebaseMessaging.onMessageOpenedApp.listen((event) {
-  //     Navigator.of(context).pushNamed('desert');
-  //   });
-
-  //   FirebaseMessaging.onMessage.listen((event) {
-  //     print('=====================data notification===================');
-  //     AwesomeDialog(
-  //         context: context,
-  //         title: 'title',
-  //         body: Text('${event.notification?.body}'),
-  //         dialogBackgroundColor: Colors.white)
-  //       ..show();
-  //   });
-
-  //   super.initState();
-  // }
 
   int selectedindex = 0;
   @override
@@ -124,19 +81,11 @@ class _IoTPageState extends State<IoTPage> {
     var speed = refdb.child('speed');
     var battery = refdb.child('battery');
 
-    // @override
-    // void initState() {
-    //   sc = StreamController();
-    //   getdata();
-
-    //   super.initState();
-    // }
-
     return Scaffold(
-        backgroundColor: Color(0xff2b2b2b),
+        backgroundColor: blackBG,
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: backgroundColorDark,
+          backgroundColor: appBarcolor,
           title: Text("Iot",
               style: TextStyle(
                 fontSize: 30,
@@ -185,9 +134,9 @@ class _IoTPageState extends State<IoTPage> {
                 ),
               ),
               InkWell(
-                  onTap: () async {
-                    await battery.set({'batt': 30});
-                  },
+                  // onTap: () async {
+                  //   await battery.set({'batt': 30});
+                  // },
                   child: Expanded(
                       child: Container(
                           child: StreamBuilder(
@@ -197,10 +146,9 @@ class _IoTPageState extends State<IoTPage> {
                                   dynamic b = 23;
                                   double p = 0.5;
                                   b = snapshot.data?.snapshot.value;
-                                  if (b != 100) {
+                                  if (b > 20) {
                                     p = b / 100;
-                                  }
-                                  return new CircularPercentIndicator(
+                                     return new CircularPercentIndicator(
                                     animationDuration: 4500,
                                     radius: 100.0,
                                     lineWidth: 25.0,
@@ -215,8 +163,28 @@ class _IoTPageState extends State<IoTPage> {
                                     ),
                                     circularStrokeCap: CircularStrokeCap.round,
                                     progressColor: Colors.green,
+                                  ); 
+                                  }else if(b<=20){
+                                    p = b / 100;
+                                    return new CircularPercentIndicator(
+                                    animationDuration: 4500,
+                                    radius: 100.0,
+                                    lineWidth: 25.0,
+                                    animation: true,
+                                    percent: p,
+                                    center: new Text(
+                                      "${b} %",
+                                      style: new TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 30.0,
+                                          color: Colors.red)
+                                    ),
+                                    circularStrokeCap: CircularStrokeCap.round,
+                                    progressColor: Colors.red,
                                   );
-                                } else {
+                                  }
+                                  
+                                } 
                                   return new CircularPercentIndicator(
                                     animationDuration: 4500,
                                     radius: 100.0,
@@ -233,8 +201,14 @@ class _IoTPageState extends State<IoTPage> {
                                     circularStrokeCap: CircularStrokeCap.round,
                                     progressColor: Colors.green,
                                   );
-                                }
-                              })))),
+                                
+
+
+
+
+
+                              }
+                              )))),
               Container(
                   // margin: EdgeInsets.only(top: 10),
                   child: Row(
@@ -267,9 +241,9 @@ class _IoTPageState extends State<IoTPage> {
                   ),
                 ),
                 InkWell(
-                    onTap: () async {
-                      await speed.set({'speed': 100});
-                    },
+                    // onTap: () async {
+                    //   await speed.set({'speed': 100});
+                    // },
                     child: Container(
                         margin: EdgeInsets.only(top: 20),
                         width: 400,
@@ -433,9 +407,9 @@ class _IoTPageState extends State<IoTPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap: () async {
-                        await temp.set({'temp': '20'});
-                      },
+                      // onTap: () async {
+                      //   await temp.set({'temp': '20'});
+                      // },
                       child: Container(
                         padding: EdgeInsets.only(top: 10, left: 10),
                         decoration: BoxDecoration(
@@ -469,18 +443,48 @@ class _IoTPageState extends State<IoTPage> {
                             ),
                             Expanded(
                               child: Container(
-                                child: FirebaseAnimatedList(
-                                    query: refdb.child('temp'),
-                                    itemBuilder:
-                                        (context, snapshot, animation, index) {
+                                child: StreamBuilder(
+                                    stream: refdb.child('temp/temp').onValue,
+                                    builder: ((context, snapshot) {
+                                      dynamic t = 23;
+                                      if (snapshot.hasData) {
+                                        t = snapshot.data?.snapshot.value;
+                                        if (t <= 43) {
+                                          return Text(
+                                          '${t} c',
+                                          style: TextStyle(color: Colors.green,fontSize: 50),
+                                        );
+                                        }else if(t > 43){
+                                          return Text(
+                                          '${t} c',
+                                          style: TextStyle(color: Colors.red,fontSize: 50),
+                                        );
+                                        }
+                                         return Text(
+                                          '${t} c',
+                                          style: TextStyle(color: Colors.red,fontSize: 50),
+                                        );
+                                      
+
+                                        
+                                      }
                                       return Text(
-                                        '${snapshot.value ?? ['temp']} c',
-                                        style: TextStyle(
-                                            color: Colors.green,
-                                            fontSize: 50,
-                                            fontWeight: FontWeight.bold),
-                                      );
-                                    }),
+                                          '0 c',
+                                          style: TextStyle(color: Colors.red,fontSize: 50),
+                                        );
+                                    })),
+                                // child: FirebaseAnimatedList(
+                                //     query: refdb.child('temp'),
+                                //     itemBuilder:
+                                //         (context, snapshot, animation, index) {
+                                //       return Text(
+                                //         '${snapshot.value ?? ['temp']} c',
+                                //         style: TextStyle(
+                                //             color: Colors.green,
+                                //             fontSize: 50,
+                                //             fontWeight: FontWeight.bold),
+                                //       );
+                                //      }),
                               ),
                             )
                           ],
@@ -491,9 +495,9 @@ class _IoTPageState extends State<IoTPage> {
                       width: 10,
                     ),
                     InkWell(
-                      onTap: () async {
-                        await light.set({'1': 'on', '2': 'off'});
-                      },
+                      // onTap: () async {
+                      //   await light.set({'1': 'on', '2': 'off'});
+                      // },
                       child: Container(
                         width: 150,
                         height: 150,
@@ -529,7 +533,7 @@ class _IoTPageState extends State<IoTPage> {
                                 style: TextStyle(
                                     color: Colors.red,
                                     fontSize: 35,
-                                    fontWeight: FontWeight.bold),
+                                   ),
                               ),
                               //     child: Container(
                               //   child: FirebaseAnimatedList(
@@ -556,9 +560,9 @@ class _IoTPageState extends State<IoTPage> {
                 Divider(),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   InkWell(
-                      onTap: () async {
-                        await breaks.set({'1': 'exellent', '2': 'breakdown'});
-                      },
+                      // onTap: () async {
+                      //   await breaks.set({'1': 'exellent', '2': 'breakdown'});
+                      // },
                       child: Container(
                           padding: EdgeInsets.only(top: 10, left: 10),
                           decoration: BoxDecoration(
@@ -597,7 +601,7 @@ class _IoTPageState extends State<IoTPage> {
                                   style: TextStyle(
                                       fontSize: 30,
                                       color: Colors.green,
-                                      fontWeight: FontWeight.bold),
+                                      ),
                                 )
                                     // child: FirebaseAnimatedList(
                                     //     query: refdb.child('breaks').child('1'),
@@ -659,7 +663,7 @@ class _IoTPageState extends State<IoTPage> {
                                   style: TextStyle(
                                       fontSize: 30,
                                       color: Colors.red,
-                                      fontWeight: FontWeight.bold),
+                                     ),
                                 )
                                     // FirebaseAnimatedList(
                                     //     query: refdb.child('seatbelt').child('status two'),

@@ -18,6 +18,7 @@ const Color backgroundColorLight = Color(0xFFF2F6FF);
 const Color backgroundColorDark = Color(0xFF25254B);
 const Color shadowColorLight = Color(0xFF4A5367);
 const Color shadowColorDark = Colors.black;
+const Color appBarcolor = Color(0xff2b2b2b);
 
 const Color primaryColor = Color.fromARGB(255, 60, 177, 95);
 const Color redColor = Color(0XFFFF5368);

@@ -6,6 +6,7 @@ import 'package:security/page/User_Profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/spalsh_Page/onboding_screen.dart';
+import 'package:security/page/started_pages/Driver/driverstart.dart';
 import 'firebase_options.dart';
 import 'lists/chat.dart';
 
@@ -30,8 +31,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: themeData(),
-      home: const OnboardingScreen(),
+      theme:
+       themeData(),
+      home: DriverStartPage()
+      // const OnboardingScreen(),
     );
   }
 }
