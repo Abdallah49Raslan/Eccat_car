@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:security/core/text_style.dart';
-import 'package:external_app_launcher/external_app_launcher.dart';
-
 import '../../../../core/colors.dart';
 import '../../../../core/space.dart';
-import 'dart:async';
-
 import '../../Health Care/darkmode.dart';
-import '../../Iot/iot.dart';
 
 class CustomerStartPage extends StatefulWidget {
   const CustomerStartPage({super.key});
@@ -26,7 +16,7 @@ class _CustomerStartPageState extends State<CustomerStartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: SingleChildScrollView(
@@ -37,19 +27,17 @@ class _CustomerStartPageState extends State<CustomerStartPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.black87,
-                            ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.black87,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -116,16 +104,14 @@ class _CustomerStartPageState extends State<CustomerStartPage> {
                             ),
                           ),
                           const SpaceVH(height: 10.0),
-                          Expanded(
-                              child: Container(
-                            child: const Text(
-                              'current location',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ))
+                          const Expanded(
+                              child: Text(
+                                'current location',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ))
                         ],
                       ),
                     )
@@ -179,16 +165,14 @@ class _CustomerStartPageState extends State<CustomerStartPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Expanded(
-                                child: Container(
-                              child: const Text(
-                                'Check health',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ))
+                            const Expanded(
+                                child: Text(
+                                  'Check health',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ))
                           ],
                         ),
                       ),

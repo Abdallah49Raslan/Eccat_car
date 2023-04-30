@@ -27,7 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController driverLicense = TextEditingController();
 
   bool _isScure = true;
-  final List<String> options = ['Driver', 'Customer', 'Owner'];
+  final List<String> options = ['Driver', 'Customer'];
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   CollectionReference users = FirebaseFirestore.instance.collection('users');

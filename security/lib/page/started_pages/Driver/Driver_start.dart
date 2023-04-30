@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:security/core/text_style.dart';
-import 'package:security/page/Iot/mainpage.dart';
+import 'package:security/page/Iot/iot.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import '../../../core/colors.dart';
 import '../../../core/space.dart';
