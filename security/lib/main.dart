@@ -1,11 +1,13 @@
 import 'package:security/page/Authintication/login_page.dart';
 import 'package:security/page/Authintication/sign_up.dart';
 import 'package:security/page/Health%20Care/darkmode.dart';
+import 'package:security/page/Iot/iot.dart';
 import 'package:security/page/User_Profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:security/page/spalsh_Page/onboding_screen.dart';
 import 'firebase_options.dart';
+import 'lists/chat.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
