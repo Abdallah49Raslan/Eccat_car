@@ -63,6 +63,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     return null;
                   },
                 ),
+                if (_errorMessage != null) // Display error message if it exists
+                  Text(
+                    _errorMessage!,
+                    style: const TextStyle(color: Colors.red),
+                  ),
                 const SpaceVH(height: 120.0),
                 Align(
                   alignment: Alignment.bottomCenter,
@@ -95,6 +100,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                     ),
                                   ),
                                 );
+                                setState(() {
+                                  _errorMessage =
+                                      null; // Set to null to hide error message
+                                });
                               }
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'invalid-email') {
