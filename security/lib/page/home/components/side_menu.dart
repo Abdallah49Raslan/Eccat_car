@@ -52,7 +52,11 @@ class _SideMenuState extends State<SideMenu> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // Do something when the avatar is tapped
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const UserDetailPage()));
                         },
                         child: StreamBuilder<DocumentSnapshot>(
                           stream: FirebaseFirestore.instance
@@ -122,6 +126,7 @@ class _SideMenuState extends State<SideMenu> {
                     menu.input!.change(true);
                     Future.delayed(const Duration(seconds: 1), () {
                       menu.input!.change(false);
+                      menu.onTap?.call(context);
                     });
                     setState(() {
                       selectedMenu = menu;
@@ -155,6 +160,7 @@ class _SideMenuState extends State<SideMenu> {
                     menu.input!.change(true);
                     Future.delayed(const Duration(seconds: 1), () {
                       menu.input!.change(false);
+                      menu.onTap?.call(context);
                     });
                     setState(() {
                       selectedMenu = menu;
@@ -163,7 +169,7 @@ class _SideMenuState extends State<SideMenu> {
                   isActive: selectedMenu == menu,
                 ),
               ),
-              const SpaceVH(height: 30.0),
+              const SpaceVH(height: 50.0),
               Mainbutton(
                 onTap: () {
                   FirebaseAuth.instance.signOut();

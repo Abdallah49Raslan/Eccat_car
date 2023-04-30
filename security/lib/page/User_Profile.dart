@@ -1,15 +1,14 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:security/core/text_style.dart';
-import '../../controler/validator.dart';
 import '../../core/colors.dart';
 import '../../core/space.dart';
-import '../../widget/Dropdown_Menu.dart';
 import '../../widget/main_button.dart';
 import '../../widget/text_fild.dart';
-import 'Authintication/login_page.dart';
 import 'spalsh_Page/onboding_screen.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserDetailPage extends StatefulWidget {
   const UserDetailPage({Key? key}) : super(key: key);
@@ -26,6 +25,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
   bool _isScure = true;
   bool _isEnabled = false;
   bool _isEditing = false;
+  PickedFile? _imageFile;
 
   final List<String> options = ['Driver', 'Customer', 'Owner'];
   final user = FirebaseAuth.instance.currentUser;
@@ -42,6 +42,14 @@ class _UserDetailPageState extends State<UserDetailPage> {
   void initState() {
     super.initState();
     fetchUserData();
+  }
+
+  void _openImagePicker() async {
+    final pickedFile =
+        await ImagePicker().getImage(source: ImageSource.gallery);
+    setState(() {
+      _imageFile = pickedFile;
+    });
   }
 
   void fetchUserData() async {
@@ -61,6 +69,16 @@ class _UserDetailPageState extends State<UserDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: backgroundColorDark,
+        title: const Text("User Info",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: whiteText,
+            )),
+      ),
       backgroundColor: blackBG,
       body: Padding(
         padding: const EdgeInsets.only(top: 50.0),
@@ -71,10 +89,6 @@ class _UserDetailPageState extends State<UserDetailPage> {
               children: [
                 //head of page
                 const SpaceVH(height: 50.0),
-                const Text(
-                  'Your info',
-                  style: headline1,
-                ),
                 //text hint
                 StreamBuilder<DocumentSnapshot>(
                   stream: FirebaseFirestore.instance
@@ -93,6 +107,40 @@ class _UserDetailPageState extends State<UserDetailPage> {
                       style: hintStyle,
                     );
                   },
+                ),
+
+                const SpaceVH(height: 10.0),
+                InkWell(
+                  onTap: () => _openImagePicker(),
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: _imageFile == null
+                            ? null
+                            : FileImage(File(_imageFile!.path)),
+                        child: _imageFile == null
+                            ? const Icon(
+                                Icons.person,
+                                size: 50,
+                              )
+                            : null,
+                      ),
+                      if (_imageFile == null)
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(Icons.add),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
 
                 //userName
@@ -185,7 +233,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                         text: 'edit',
                         style: headlineDot.copyWith(
                           fontSize: 14.0,
-                          color: backgroundColorLight,
+                          color: redColor,
                         ),
                       ),
                     ]),
