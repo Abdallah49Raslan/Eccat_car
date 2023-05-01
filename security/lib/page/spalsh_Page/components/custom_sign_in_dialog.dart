@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/text_style.dart';
-import '../../../firebaseService.dart';
 import '../../Authintication/sign_up.dart';
 import 'sign_in_form.dart';
 
@@ -67,7 +66,7 @@ Future<Object?> customSigninDialog(BuildContext context,
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 24),
                   child: Text(
-                    "Sign up with Email or Google",
+                    "Sign up with Email",
                     style: TextStyle(color: Colors.black54),
                   ),
                 ),
@@ -84,17 +83,6 @@ Future<Object?> customSigninDialog(BuildContext context,
                       },
                       icon: SvgPicture.asset(
                         "assets/icons/email_box.svg",
-                        height: 64,
-                        width: 64,
-                      ),
-                    ),
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        FirebaseService.signInWithGoogle(context);
-                      },
-                      icon: SvgPicture.asset(
-                        "assets/icons/google_box.svg",
                         height: 64,
                         width: 64,
                       ),

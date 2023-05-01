@@ -65,7 +65,7 @@ class _SideMenuState extends State<SideMenu> {
                               .snapshots(),
                           builder: (context, snapshot) {
                             if (!snapshot.hasData) {
-                              return CircleAvatar(
+                              return const CircleAvatar(
                                 backgroundColor: Colors.white24,
                                 child: Icon(
                                   CupertinoIcons.person,
@@ -83,7 +83,7 @@ class _SideMenuState extends State<SideMenu> {
                                   : null,
                               backgroundColor: Colors.white24,
                               child: profilePicUrl == null
-                                  ? Icon(
+                                  ? const Icon(
                                       CupertinoIcons.person,
                                       color: Colors.white,
                                     )
@@ -92,10 +92,11 @@ class _SideMenuState extends State<SideMenu> {
                           },
                         ),
                       ),
-                      const SizedBox(width: 8),
                       Text(
                         'Welcome ${userName ?? ''}!',
-                        style: headline2,
+                        style: headline2.copyWith(
+                          fontSize: 16.0,
+                        ),
                       ),
                     ],
                   );
