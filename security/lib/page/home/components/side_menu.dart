@@ -55,8 +55,7 @@ class _SideMenuState extends State<SideMenu> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const UserDetailPage()));
+                                  builder: (context) => const UserInfoPage()));
                         },
                         child: StreamBuilder<DocumentSnapshot>(
                           stream: FirebaseFirestore.instance
@@ -92,10 +91,13 @@ class _SideMenuState extends State<SideMenu> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text(
                         'Welcome ${userName ?? ''}!',
                         style: headline2.copyWith(
-                          fontSize: 16.0,
+                          fontSize: 20.0,
                         ),
                       ),
                     ],

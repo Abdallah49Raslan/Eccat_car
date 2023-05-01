@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/colors.dart';
+import '../core/text_style.dart';
 
 class ChatbotPage extends StatefulWidget {
   @override
@@ -37,12 +38,10 @@ class _ChatbotPageState extends State<ChatbotPage> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: backgroundColorDark,
-        title: const Text("Help",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: whiteText,
-            )),
+        title: const Text(
+          "Help",
+          style: headline1,
+        ),
       ),
       body: Column(
         children: <Widget>[

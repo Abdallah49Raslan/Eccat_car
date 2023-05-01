@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 import '../../../lists/chat.dart';
+import '../../../lists/search.dart';
 
 class RiveAsset {
   final String artboard, stateMachineName, title, src;
@@ -13,8 +14,7 @@ class RiveAsset {
       required this.stateMachineName,
       required this.title,
       this.input,
-      this.onTap});  // Add default value of null for onTap
-
+      this.onTap}); // Add default value of null for onTap
 
   set setInput(SMIBool status) {
     input = status;
@@ -71,6 +71,8 @@ List<RiveAsset> sideMenus = [
     title: "Search",
     onTap: (BuildContext context) {
       // Navigate to the Search screen
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => DataSearchPage()));
     },
   ),
   RiveAsset(

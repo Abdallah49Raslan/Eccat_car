@@ -32,10 +32,9 @@ class LoginLogic extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else {
-          // Show a login form or other content if the login process has not started yet
-          return const OnboardingScreen();
         }
+        // Show a login form or other content if the login process has not started yet
+        return const OnboardingScreen();
       },
     );
   }
@@ -78,7 +77,6 @@ class LoginLogic extends StatelessWidget {
 
           // Navigate to the appropriate start page based on user's role
           if (user == 'Owner') {
-            
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const EntryOwner()),

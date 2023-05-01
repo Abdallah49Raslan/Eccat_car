@@ -1,69 +1,45 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:security/core/text_style.dart';
-import '../../core/colors.dart';
-import '../../core/space.dart';
-import '../../widget/main_button.dart';
-import '../../widget/text_fild.dart';
-import 'spalsh_Page/onboding_screen.dart';
+import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
-class UserDetailPage extends StatefulWidget {
-  const UserDetailPage({Key? key}) : super(key: key);
+import '../core/colors.dart';
+
+class UserInfoPage extends StatefulWidget {
+  const UserInfoPage({Key? key}) : super(key: key);
 
   @override
-  _UserDetailPageState createState() => _UserDetailPageState();
+  _UserInfoPageState createState() => _UserInfoPageState();
 }
 
-class _UserDetailPageState extends State<UserDetailPage> {
-  TextEditingController userName = TextEditingController();
-  TextEditingController userPass = TextEditingController();
-  TextEditingController userEmail = TextEditingController();
-  TextEditingController userPh = TextEditingController();
-  bool _isScure = true;
-  bool _isEnabled = false;
-  bool _isEditing = false;
-  PickedFile? _imageFile;
+class _UserInfoPageState extends State<UserInfoPage> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _newFieldKeyController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _newFieldValueController =
+      TextEditingController();
+  late User _user;
+  late File _imageFile;
+  final picker = ImagePicker();
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  final List<String> options = ['Driver', 'Customer', 'Owner'];
-  final user = FirebaseAuth.instance.currentUser;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
-  String? email;
-  String? password;
-  String? Name;
-  String? phone;
-  String? selectedOption;
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    fetchUserData();
-  }
-
-  void _openImagePicker() async {
-    final pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
-    setState(() {
-      _imageFile = pickedFile;
-    });
-  }
-
-  void fetchUserData() async {
-    final userData = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user?.uid)
-        .get();
-    if (userData.exists) {
+    _user = FirebaseAuth.instance.currentUser!;
+    _firestore.collection('users').doc(_user.uid).get().then((snapshot) {
       setState(() {
-        userName.text = userData.data()?['name'];
-        userEmail.text = userData.data()?['email'];
-        userPh.text = userData.data()?['phone'];
+        _nameController.text = snapshot.data()!['name'] ?? '';
+        _emailController.text = snapshot.data()!['email'] ?? '';
+        _phoneNumberController.text = snapshot.data()!['phone'] ?? '';
       });
-    }
+    });
   }
 
   @override
@@ -79,189 +55,205 @@ class _UserDetailPageState extends State<UserDetailPage> {
               color: whiteText,
             )),
       ),
-      backgroundColor: blackBG,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 50.0),
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                //head of page
-                const SpaceVH(height: 50.0),
-                //text hint
-                StreamBuilder<DocumentSnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(user?.uid)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const CircularProgressIndicator();
-                    }
-                    final userData =
-                        snapshot.data?.data() as Map<String, dynamic>?;
-                    final userName = userData?['name'] as String?;
-                    return Text(
-                      'Welcome ${userName ?? 'Driver'}!',
-                      style: hintStyle,
-                    );
-                  },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                radius: 60,
+                backgroundImage:
+                    _imageFile != null ? FileImage(_imageFile) : null,
+                child: GestureDetector(
+                  onTap: _getImage,
+                  child: _imageFile == null
+                      ? const Icon(Icons.person, size: 60)
+                      : null,
                 ),
-
-                const SpaceVH(height: 10.0),
-                InkWell(
-                  onTap: () => _openImagePicker(),
-                  child: Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundImage: _imageFile == null
-                            ? null
-                            : FileImage(File(_imageFile!.path)),
-                        child: _imageFile == null
-                            ? const Icon(
-                                Icons.person,
-                                size: 50,
-                              )
-                            : null,
-                      ),
-                      if (_imageFile == null)
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(Icons.add),
-                          ),
-                        ),
-                    ],
-                  ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _isLoading ? null : _uploadImage,
+                child: _isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text('Update Profile Picture'),
+              ),
+              Text(
+                'Name:',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  hintText: 'Enter your name',
+                  border: OutlineInputBorder(),
                 ),
-
-                //userName
-                const SpaceVH(height: 30.0),
-                textField(
-                  onChanged: (data) {
-                    Name = data;
-                  },
-                  controller: userName,
-                  prefixIcon: const Icon(Icons.person_outline_rounded),
-                  keyboardType: TextInputType.name,
-                  hintTxt: 'Full Name',
-                  enabled: _isEnabled,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Email:',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  hintText: 'Enter your email',
+                  border: OutlineInputBorder(),
                 ),
-
-                //userEmail
-                textField(
-                  enabled: false,
-                  controller: userEmail,
-                  keyboardType: TextInputType.emailAddress,
-                  prefixIcon: const Icon(Icons.email),
-                  hintTxt: 'Email Address',
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Phone Number:',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              TextFormField(
+                controller: _phoneNumberController,
+                decoration: const InputDecoration(
+                  hintText: 'Enter your phone number',
+                  border: OutlineInputBorder(),
                 ),
-                //user Number
-                textField(
-                  onChanged: (data) {
-                    phone = data;
-                  },
-                  controller: userPh,
-                  prefixIcon: const Icon(Icons.phone),
-                  keyboardType: TextInputType.phone,
-                  hintTxt: 'Phone Number',
-                  enabled: _isEnabled,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your phone number';
-                    }
-                    return null;
-                  },
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _isLoading ? null : _updateUserInfo,
+                child: _isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text('Update Info'),
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'Add info about you',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _newFieldKeyController,
+                decoration: const InputDecoration(
+                  hintText: 'Enter new field',
+                  border: OutlineInputBorder(),
                 ),
-
-                // Edit button
-                const SpaceVH(height: 20.0),
-                TextButton(
-                  // Edit button onPressed callback
-                  onPressed: () {
-                    if (_isEditing) {
-                      // Save the changes to Firestore and lock the text fields
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        userName.text = Name!;
-                        userPh.text = phone!;
-                        userEmail.text = email!;
-
-                        selectedOption = options[0];
-                        users.doc(user!.uid).update({
-                          'name': Name,
-                          'email': email,
-                          'phone': phone,
-                        });
-                        userEmail.clear();
-                        userPh.clear();
-                        userPass.clear();
-                        formKey.currentState!.reset();
-                        _isScure = true;
-                        _isEditing = false;
-                        _isEnabled = false;
-                      }
-                    } else {
-                      // Allow the user to edit the text fields
-                      _isEditing = true;
-                      _isEnabled = true;
-                    }
-                  },
-                  child: RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text: 'Edit Your acount information: ',
-                        style: headline.copyWith(
-                          fontSize: 14.0,
-                        ),
-                      ),
-                      TextSpan(
-                        text: 'edit',
-                        style: headlineDot.copyWith(
-                          fontSize: 14.0,
-                          color: redColor,
-                        ),
-                      ),
-                    ]),
-                  ),
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _newFieldValueController,
+                decoration: const InputDecoration(
+                  hintText: 'Enter new value of this field ',
+                  border: OutlineInputBorder(),
                 ),
-
-                //Logout button
-                SpaceVH(height: 50.0),
-                Mainbutton(
-                  onTap: () {
-                    FirebaseAuth.instance.signOut();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const OnboardingScreen()),
-                    );
-                  },
-                  text: 'Logout',
-                  btnColor: blueButton,
-                ),
-
-                //switch to Login
-                const SpaceVH(height: 20.0),
-              ],
-            ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _isLoading ? null : _addNewField,
+                child: _isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text('Add Field'),
+              ),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  Future<void> _getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  Future<void> _uploadImage() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final ref = _storage.ref().child('users/${_user.uid}/profile.png');
+      await ref.putFile(_imageFile);
+      final url = await ref.getDownloadURL();
+      await _user.updatePhotoURL(url);
+      await _firestore.collection('users').doc(_user.uid).update({
+        'photoUrl': url,
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Profile picture updated successfully')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error updating profile picture: $e')),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _updateUserInfo() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      await _user.updateDisplayName(_nameController.text);
+      await _user.updateEmail(_emailController.text);
+      await _firestore.collection('users').doc(_user.uid).update({
+        'name': _nameController.text,
+        'email': _emailController.text,
+        'phone': _phoneNumberController.text,
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('User info updated successfully')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error updating user info: $e')),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _addNewField() async {
+    final newFieldKey = _newFieldKeyController.text.trim();
+    final newFieldValue = _newFieldValueController.text.trim();
+    if (newFieldKey.isEmpty || newFieldValue.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter a key and value')),
+      );
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await _firestore
+          .collection('users')
+          .doc(_user.uid)
+          .update({newFieldKey: newFieldValue});
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('New field added successfully')),
+      );
+      _newFieldKeyController.clear();
+      _newFieldValueController.clear();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error adding new field: $e')),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 }
