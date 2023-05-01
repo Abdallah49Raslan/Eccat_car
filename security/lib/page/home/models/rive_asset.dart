@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 import '../../../lists/chat.dart';
+import '../../../lists/history.dart';
 import '../../../lists/search.dart';
 
 class RiveAsset {
@@ -104,7 +105,9 @@ List<RiveAsset> sideMenu2 = [
     stateMachineName: "TIMER_Interactivity",
     title: "History",
     onTap: (BuildContext context) {
-      // Navigate to the Favorites screen
+      // Navigate to the screen HistoryPage
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HistoryPage()));
     },
   ),
   RiveAsset(

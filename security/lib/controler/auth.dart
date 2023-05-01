@@ -1,0 +1,110 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../page/spalsh_Page/onboding_screen.dart';
+import '../page/started_pages/Customer/entry_customer.dart';
+import '../page/started_pages/Driver/entry_Driver.dart';
+import '../page/started_pages/Owner/entry_Owner.dart';
+import 'LogInLogic.dart';
+
+class AuthPage extends StatefulWidget {
+  const AuthPage({Key? key}) : super(key: key);
+
+  @override
+  _AuthPageState createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    checkUserAuth();
+  }
+
+  Future<void> checkUserAuth() async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      // Check user's role in Cloud Firestore
+      String? userRole; // Declare the role variable before using it
+      DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .get();
+
+      if (documentSnapshot != null && documentSnapshot.exists) {
+        userRole = documentSnapshot.data()!['user'];
+
+        // Navigate to the appropriate start page based on user's role
+        if (userRole == 'Owner') {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const EntryOwner()),
+          );
+        } else if (userRole == 'Driver') {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const EntryDriver()),
+          );
+        } else if (userRole == 'Customer') {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const EntryCustomer()),
+          );
+        } else {
+          // If role is not recognized, show an error message and return to OnboardingScreen
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  const Icon(Icons.error_outline),
+                  const SizedBox(width: 10),
+                  const Text('User role not recognized'),
+                ],
+              ),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => OnboardingScreen()),
+          );
+        }
+      } else {
+        // If user document does not exist, show an error message and return to OnboardingScreen
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                const Icon(Icons.error_outline),
+                const SizedBox(width: 10),
+                const Text('User document not found in Cloud Firestore'),
+              ],
+            ),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => OnboardingScreen()),
+        );
+      }
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => OnboardingScreen()),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+}

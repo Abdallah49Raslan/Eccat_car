@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -51,10 +49,10 @@ class LoginLogic extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Row(
-              children: [
-                const Icon(Icons.error_outline),
-                const SizedBox(width: 10),
-                const Text('Email or password is null'),
+              children: const [
+                Icon(Icons.error_outline),
+                SizedBox(width: 8),
+                Text('Email or password is null'),
               ],
             ),
             behavior: SnackBarBehavior.floating,
@@ -65,14 +63,14 @@ class LoginLogic extends StatelessWidget {
 
       if (userCredential != null) {
         // Check user's role in Cloud Firestore
-        String? user = null; // Declare the role variable before using it
+        String? user; // Declare the role variable before using it
         DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
             await FirebaseFirestore.instance
                 .collection('users')
                 .doc(userCredential.user!.uid)
                 .get();
 
-        if (documentSnapshot != null && documentSnapshot.exists) {
+        if (documentSnapshot.exists) {
           user = documentSnapshot.data()!['user'];
 
           // Navigate to the appropriate start page based on user's role
@@ -96,10 +94,10 @@ class LoginLogic extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Row(
-                  children: [
-                    const Icon(Icons.error_outline),
-                    const SizedBox(width: 10),
-                    const Text('User role not recognized'),
+                  children: const [
+                    Icon(Icons.error_outline),
+                    SizedBox(width: 7),
+                    Text('User role not recognized'),
                   ],
                 ),
                 behavior: SnackBarBehavior.floating,
@@ -112,10 +110,10 @@ class LoginLogic extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Row(
-                children: [
-                  const Icon(Icons.error_outline),
-                  const SizedBox(width: 10),
-                  const Text('User document not found in Cloud Firestore'),
+                children: const [
+                  Icon(Icons.error_outline),
+                  SizedBox(width: 8),
+                  Text('User document not found in Cloud Firestore'),
                 ],
               ),
               behavior: SnackBarBehavior.floating,
@@ -150,7 +148,7 @@ class LoginLogic extends StatelessWidget {
           content: Row(
             children: [
               const Icon(Icons.error_outline),
-              const SizedBox(width: 10),
+              const SizedBox(width: 8),
               Text(errorMessage),
             ],
           ),

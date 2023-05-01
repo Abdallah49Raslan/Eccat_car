@@ -8,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:security/page/spalsh_Page/onboding_screen.dart';
 import 'package:security/page/started_pages/Driver/driverstart.dart';
 import 'package:security/page/started_pages/Driver/entry_Driver.dart';
+import 'controler/auth.dart';
 import 'firebase_options.dart';
 import 'lists/chat.dart';
+import 'lists/history.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: themeData(),
-        home: OnboardingScreen(),
+        home: const AuthPage(),
         builder: (context, child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(
