@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:security/core/colors.dart';
 import 'package:security/core/space.dart';
+import '../../../car_page.dart';
 import '../../Health Care/darkmode.dart';
+import '../../Iot/entry_iot.dart';
 import '../../Iot/iot.dart';
 
 class DriverStartPage extends StatefulWidget {
@@ -128,7 +130,7 @@ class _DriverStartPageState extends State<DriverStartPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (builder) => const IoTPage()));
+                                  builder: (builder) => const EntryIoT()));
                         },
                         child: Container(
                           height: (cons.maxWidth - 8) / 2,
@@ -187,7 +189,12 @@ class _DriverStartPageState extends State<DriverStartPage> {
                     children: [
                       //AI
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (builder) => const Car_page()));
+                        },
                         child: Container(
                           height: (cons.maxWidth - 8) / 2,
                           width: (cons.maxWidth - 8) / 2,

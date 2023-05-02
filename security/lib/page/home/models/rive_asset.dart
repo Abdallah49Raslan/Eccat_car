@@ -106,8 +106,8 @@ List<RiveAsset> sideMenu2 = [
     title: "History",
     onTap: (BuildContext context) {
       // Navigate to the screen HistoryPage
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HistoryPage()));
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => HistoryPage()));
     },
   ),
   RiveAsset(
