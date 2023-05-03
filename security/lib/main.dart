@@ -11,6 +11,7 @@ import 'controler/auth.dart';
 import 'controller/controller.dart';
 import 'controller/controller_bindings.dart';
 import 'firebase_options.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

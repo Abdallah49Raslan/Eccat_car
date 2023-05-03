@@ -4,6 +4,7 @@ import 'package:security/core/space.dart';
 import '../../../car_page.dart';
 import '../../Health Care/darkmode.dart';
 import '../../Iot/iot.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 
 class DriverStartPage extends StatefulWidget {
   const DriverStartPage({super.key});
@@ -83,7 +84,15 @@ class _DriverStartPageState extends State<DriverStartPage> {
                     children: [
                       //location
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          await LaunchApp.openApp(
+                            androidPackageName: 'com.google.android.apps.maps',
+                            iosUrlScheme: 'comgooglemaps://',
+                            appStoreLink:
+                                'https://apps.apple.com/us/app/google-maps/id585027354',
+                            // openStore: false
+                          );
+                        },
                         child: Container(
                           height: (cons.maxWidth - 8) / 2,
                           width: (cons.maxWidth - 8) / 2,

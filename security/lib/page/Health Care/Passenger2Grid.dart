@@ -14,7 +14,7 @@ Widget passenger2grid() {
     padding: EdgeInsets.only(right: 5, left: 1),
     decoration: BoxDecoration(
       color: Colors.white10,
-      border: Border.all(color: primaryColor, width: 2),
+      border: Border.all(color: borderColor, width: 2),
       borderRadius: BorderRadius.circular(6),
     ),
     child: Column(

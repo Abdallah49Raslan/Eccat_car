@@ -27,7 +27,8 @@ class _darkmodeState extends State<HealthCareDriver> {
     //Driver values
     outputstream = database.child('HealthDatabase').onValue.listen((event) {
       final num? temp = event.snapshot.child('Drivertemperature').value as num;
-      final num? heartRate = event.snapshot.child('DriverheartRate').value as num;
+      final num? heartRate =
+          event.snapshot.child('DriverheartRate').value as num;
       final num? oximeter = event.snapshot.child('Driveroximeter').value as num;
       final Object? alcohol = event.snapshot.child('Driveralcohol').value;
       //Passenger1 values
@@ -85,8 +86,8 @@ class _darkmodeState extends State<HealthCareDriver> {
               height: 30,
             ),
             Container(
-              width: double.infinity,
-              height: (600),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height - 220,
               margin: EdgeInsets.only(top: 10),
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -111,30 +112,30 @@ class _darkmodeState extends State<HealthCareDriver> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 15,
-            ),
             Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 10,
                 child: Center(
-              child: ElevatedButton(
-                onPressed: () async {
-                  TestButtonREf.set({'TestButton': 'on'});
-                },
-                child: Text(
-                  "Test Now",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                      side: BorderSide(width: 2, color: Color(0XFFC6372A)))),
-                ),
-              ),
-            ))
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      TestButtonREf.set({'TestButton': 'on'});
+                    },
+                    child: Text(
+                      "Test Now",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.white),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side:
+                              BorderSide(width: 2, color: Color(0XFFC6372A)))),
+                    ),
+                  ),
+                ))
           ],
         ));
   }
