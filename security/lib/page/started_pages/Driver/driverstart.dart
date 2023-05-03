@@ -3,7 +3,6 @@ import 'package:security/core/colors.dart';
 import 'package:security/core/space.dart';
 import '../../../car_page.dart';
 import '../../Health Care/darkmode.dart';
-import '../../Iot/entry_iot.dart';
 import '../../Iot/iot.dart';
 
 class DriverStartPage extends StatefulWidget {
@@ -130,7 +129,7 @@ class _DriverStartPageState extends State<DriverStartPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (builder) => const EntryIoT()));
+                                  builder: (builder) => const IoTPage()));
                         },
                         child: Container(
                           height: (cons.maxWidth - 8) / 2,

@@ -94,10 +94,12 @@ class _SideMenuState extends State<SideMenu> {
                       SizedBox(
                         width: 5,
                       ),
-                      Text(
-                        'Welcome ${userName ?? ''}!',
-                        style: headline2.copyWith(
-                          fontSize: 20.0,
+                      Expanded(
+                        child: Text(
+                          ' ${userName ?? ''}!',
+                          style: headline2.copyWith(
+                            fontSize: 20.0,
+                          ),
                         ),
                       ),
                     ],

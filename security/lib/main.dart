@@ -7,6 +7,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/instance_manager.dart';
 import 'package:security/page/spalsh_Page/onboding_screen.dart';
 import 'package:security/page/started_pages/Driver/entry_Driver.dart';
+import 'controler/auth.dart';
 import 'controller/controller.dart';
 import 'controller/controller_bindings.dart';
 import 'firebase_options.dart';
@@ -17,7 +18,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Initialize the awesome_notifications plugin
   // await AwesomeNotifications().initialize(
   //   null,
   //   [

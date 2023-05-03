@@ -8,6 +8,8 @@ import 'package:security/page/home/models/rive_asset.dart';
 import 'package:security/page/started_pages/Driver/driverstart.dart';
 import '../../../core/colors.dart';
 import '../../../core/rive_utils.dart';
+import '../../../lists/search.dart';
+import '../../User_Profile.dart';
 
 // We are done with our 5th and last episode
 // Thank you so much for watching entire serise
@@ -32,6 +34,14 @@ class _EntryDriverState extends State<EntryDriver>
   late SMIBool isSideBarClosed;
 
   bool isSideMenuClosed = true;
+  int currentpages = 0;
+  List<Widget> pages = [
+    DriverStartPage(),
+    DataSearchPage(),
+    Text('timer'),
+    Text('bell'),
+    UserInfoPage()
+  ];
 
   @override
   void initState() {
@@ -85,9 +95,9 @@ class _EntryDriverState extends State<EntryDriver>
               offset: Offset(animation.value * 265, 0),
               child: Transform.scale(
                 scale: scalAnimation.value,
-                child: const ClipRRect(
+                child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: DriverStartPage(),
+                  child: pages[currentpages],
                 ),
               ),
             ),
@@ -144,6 +154,7 @@ class _EntryDriverState extends State<EntryDriver>
                       if (bottomNavs[index] != selectedBottomNav) {
                         setState(() {
                           selectedBottomNav = bottomNavs[index];
+                          currentpages = index;
                         });
                       }
                       Future.delayed(const Duration(seconds: 1), () {

@@ -24,9 +24,9 @@ class RiveAsset {
 
 List<RiveAsset> bottomNavs = [
   RiveAsset("assets/RiveAssets/icons.riv",
-      artboard: "CHAT",
-      stateMachineName: "CHAT_Interactivity",
-      title: "Chat", onTap: (BuildContext context) {
+      artboard: "HOME",
+      stateMachineName: "HOME_interactivity",
+      title: "Home", onTap: (BuildContext context) {
     // Navigate to the Chat screen
   }),
   RiveAsset("assets/RiveAssets/icons.riv",
@@ -106,8 +106,8 @@ List<RiveAsset> sideMenu2 = [
     title: "History",
     onTap: (BuildContext context) {
       // Navigate to the screen HistoryPage
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => HistoryPage()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HistoryPage()));
     },
   ),
   RiveAsset(

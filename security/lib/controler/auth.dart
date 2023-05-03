@@ -33,10 +33,10 @@ class _AuthPageState extends State<AuthPage> {
               .collection('users')
               .doc(user.uid)
               .get();
-
+      print('1');
       if (documentSnapshot != null && documentSnapshot.exists) {
         userRole = documentSnapshot.data()!['user'];
-
+print('2');
         // Navigate to the appropriate start page based on user's role
         if (userRole == 'Owner') {
           Navigator.pushReplacement(
@@ -48,12 +48,14 @@ class _AuthPageState extends State<AuthPage> {
             context,
             MaterialPageRoute(builder: (context) => const EntryDriver()),
           );
+          print('3');
         } else if (userRole == 'Customer') {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const EntryCustomer()),
           );
         } else {
+          print('4');
           // If role is not recognized, show an error message and return to OnboardingScreen
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -73,6 +75,7 @@ class _AuthPageState extends State<AuthPage> {
           );
         }
       } else {
+        print('5');
         // If user document does not exist, show an error message and return to OnboardingScreen
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -92,6 +95,7 @@ class _AuthPageState extends State<AuthPage> {
         );
       }
     } else {
+      print('6');
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => OnboardingScreen()),

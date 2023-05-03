@@ -5,11 +5,16 @@ import 'package:security/page/home/components/animated_bar.dart';
 import 'package:security/page/home/components/side_menu.dart';
 import 'package:security/page/home/models/menu_btn.dart';
 import 'package:security/page/home/models/rive_asset.dart';
-import 'package:security/page/started_pages/Customer/Custom_start.dart';
-
+import 'package:security/page/started_pages/Driver/driverstart.dart';
 import '../../../core/colors.dart';
 import '../../../core/rive_utils.dart';
+import '../../../lists/search.dart';
+import '../../User_Profile.dart';
+import 'Custom_start.dart';
 
+// We are done with our 5th and last episode
+// Thank you so much for watching entire serise
+// Bye
 
 class EntryCustomer extends StatefulWidget {
   const EntryCustomer({super.key});
@@ -30,6 +35,14 @@ class _EntryCustomerState extends State<EntryCustomer>
   late SMIBool isSideBarClosed;
 
   bool isSideMenuClosed = true;
+  int currentpages = 0;
+  List<Widget> pages = [
+    CustomerStartPage(),
+    DataSearchPage(),
+    Text('timer'),
+    Text('bell'),
+    UserInfoPage()
+  ];
 
   @override
   void initState() {
@@ -83,9 +96,9 @@ class _EntryCustomerState extends State<EntryCustomer>
               offset: Offset(animation.value * 265, 0),
               child: Transform.scale(
                 scale: scalAnimation.value,
-                child: const ClipRRect(
+                child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: CustomerStartPage(),
+                  child: pages[currentpages],
                 ),
               ),
             ),
@@ -142,6 +155,7 @@ class _EntryCustomerState extends State<EntryCustomer>
                       if (bottomNavs[index] != selectedBottomNav) {
                         setState(() {
                           selectedBottomNav = bottomNavs[index];
+                          currentpages = index;
                         });
                       }
                       Future.delayed(const Duration(seconds: 1), () {

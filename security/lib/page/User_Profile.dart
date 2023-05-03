@@ -23,9 +23,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
   final TextEditingController _newFieldValueController =
       TextEditingController();
   late User _user;
-  late File _imageFile;
+  File? _imageFile;
   final picker = ImagePicker();
   final FirebaseStorage _storage = FirebaseStorage.instance;
+  String? urlPhoto;
 
   bool _isLoading = false;
 
@@ -38,6 +39,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         _nameController.text = snapshot.data()!['name'] ?? '';
         _emailController.text = snapshot.data()!['email'] ?? '';
         _phoneNumberController.text = snapshot.data()!['phone'] ?? '';
+        urlPhoto = snapshot.data()!['photoUrl'] ?? '';
       });
     });
   }
@@ -63,13 +65,16 @@ class _UserInfoPageState extends State<UserInfoPage> {
             children: [
               CircleAvatar(
                 radius: 60,
-                backgroundImage:
-                    _imageFile != null ? FileImage(_imageFile) : null,
+                backgroundImage: _imageFile != null
+                    ? FileImage(_imageFile!)
+                    : urlPhoto != null
+                        ? NetworkImage(urlPhoto!) as ImageProvider
+                        : null,
                 child: GestureDetector(
                   onTap: _getImage,
-                  child: _imageFile == null
-                      ? const Icon(Icons.person, size: 60)
-                      : null,
+                  child: _imageFile != null
+                      ? null
+                      : const Icon(Icons.person, size: 60),
                 ),
               ),
               const SizedBox(height: 16),
@@ -174,9 +179,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
     try {
       final ref = _storage.ref().child('users/${_user.uid}/profile.png');
-      await ref.putFile(_imageFile);
+
+      await ref.putFile(_imageFile!);
+
       final url = await ref.getDownloadURL();
+
       await _user.updatePhotoURL(url);
+
       await _firestore.collection('users').doc(_user.uid).update({
         'photoUrl': url,
       });
@@ -185,6 +194,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         const SnackBar(content: Text('Profile picture updated successfully')),
       );
     } catch (e) {
+      print(e);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error updating profile picture: $e')),
       );
