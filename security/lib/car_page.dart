@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 
 import 'controller/controller.dart';
+import 'core/colors.dart';
+import 'core/text_style.dart';
 
 class Car_page extends StatefulWidget {
   const Car_page({super.key});
@@ -37,7 +39,13 @@ class _Car_pageState extends State<Car_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: blackBG,
+      appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: backgroundColorDark,
+          title: Text("AI",
+              style: headline1,),
+        ),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, BoxConstraints) {

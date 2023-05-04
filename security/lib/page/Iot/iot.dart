@@ -85,7 +85,7 @@ class _IoTPageState extends State<IoTPage> {
       backgroundColor: blackBG,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: appBarcolor,
+        backgroundColor: backgroundColorDark,
         title: Text("Iot",
             style: TextStyle(
               fontSize: 30,

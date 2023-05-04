@@ -7,6 +7,8 @@ import 'package:security/page/Health Care/DriverGrid.dart';
 import 'package:security/page/Health Care/Passenger1Grid.dart';
 import 'package:security/page/Health Care/Passenger2Grid.dart';
 
+import '../../core/text_style.dart';
+
 class HealthCareDriver extends StatefulWidget {
   const HealthCareDriver({super.key});
 
@@ -73,12 +75,10 @@ class _darkmodeState extends State<HealthCareDriver> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: backgroundColorDark,
-          title: Text("HealthCare",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              )),
+          title: Text(
+            "HealthCare",
+            style: headline1,
+          ),
         ),
         body: Column(
           children: [

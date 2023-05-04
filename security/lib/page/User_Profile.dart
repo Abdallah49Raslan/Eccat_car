@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
 import '../core/colors.dart';
+import '../core/text_style.dart';
 
 class UserInfoPage extends StatefulWidget {
   const UserInfoPage({Key? key}) : super(key: key);
@@ -51,11 +51,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         centerTitle: true,
         backgroundColor: backgroundColorDark,
         title: const Text("User Info",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: whiteText,
-            )),
+            style: headline1,),
       ),
       body: SingleChildScrollView(
         child: Padding(

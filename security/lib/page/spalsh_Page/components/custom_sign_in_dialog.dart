@@ -54,7 +54,7 @@ Future<Object?> customSigninDialog(BuildContext context,
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        "OR",
+                        " OR Don't have an Accounet",
                         style: TextStyle(
                           color: Colors.black26,
                         ),

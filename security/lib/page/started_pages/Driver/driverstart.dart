@@ -19,6 +19,7 @@ class _DriverStartPageState extends State<DriverStartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColorLight,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -52,7 +53,7 @@ class _DriverStartPageState extends State<DriverStartPage> {
                   width: double.infinity,
                   height: 300,
                   // decoration: const BoxDecoration(
-                  //     color: whiteText,
+                  //     color: backgroundColorLight,
                   //     borderRadius: BorderRadius.only(
                   //         bottomLeft: Radius.circular(50),
                   //         bottomRight: Radius.circular(50))),

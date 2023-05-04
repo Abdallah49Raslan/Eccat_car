@@ -23,6 +23,7 @@ class _OwnerStartPageState extends State<OwnerStartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: blackBG,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -55,11 +56,11 @@ class _OwnerStartPageState extends State<OwnerStartPage> {
               Container(
                   width: double.infinity,
                   //height: 300,
-                  // decoration: const BoxDecoration(
-                  //     color: whiteText,
-                  //     borderRadius: BorderRadius.only(
-                  //         bottomLeft: Radius.circular(50),
-                  //         bottomRight: Radius.circular(50))),
+                  decoration: const BoxDecoration(
+                      color: whiteText,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(50),
+                          bottomRight: Radius.circular(50))),
                   child: Image.asset(
                     'assets/image/222.png',
                     height: 330,
@@ -88,7 +89,15 @@ class _OwnerStartPageState extends State<OwnerStartPage> {
                     children: [
                       //location
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          await LaunchApp.openApp(
+                            androidPackageName: 'com.google.android.apps.maps',
+                            iosUrlScheme: 'comgooglemaps://',
+                            appStoreLink:
+                                'https://apps.apple.com/us/app/google-maps/id585027354',
+                            // openStore: false
+                          );
+                        },
                         child: Container(
                           height: (cons.maxWidth - 8) / 2,
                           width: (cons.maxWidth - 8) / 2,
