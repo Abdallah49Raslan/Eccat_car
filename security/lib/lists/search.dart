@@ -1,5 +1,7 @@
+import 'package:eccat_car/Pages/Health%20Care/darkmode.dart';
+import 'package:eccat_car/Pages/Iot/iot.dart';
+import 'package:eccat_car/Pages/User_Profile.dart';
 import 'package:flutter/material.dart';
-
 import '../core/colors.dart';
 import '../core/text_style.dart';
 
@@ -9,12 +11,21 @@ class DataSearchPage extends StatefulWidget {
 }
 
 class _DataSearchPageState extends State<DataSearchPage> {
+  Map<String, Widget> dataPages = {
+    'Battery': IoTPage(),
+    'Speed': IoTPage(),
+    'Driver Health': HealthCareDriver(),
+    'Passenger1': HealthCareDriver(),
+    'Passenger 2': HealthCareDriver(),
+    'Email & password': UserInfoPage(),
+  };
   List<String> data = [
     'Battery',
     'Speed',
     'Driver Health',
     'Passenger1',
-    'Passenger 2'
+    'Passenger 2',
+    'Email & password'
   ];
   String _searchText = '';
 
@@ -68,10 +79,21 @@ class _DataSearchPageState extends State<DataSearchPage> {
             child: ListView.builder(
               itemCount: filteredData.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(
-                    filteredData[index],
-                    style: TextStyle(color: whiteText),
+                return GestureDetector(
+                  onTap: () {
+                    String selectedData = filteredData[index];
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => dataPages[selectedData]!,
+                      ),
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      filteredData[index],
+                      style: TextStyle(color: whiteText),
+                    ),
                   ),
                 );
               },
